@@ -607,13 +607,13 @@
                 <a href="#" class="button">Login</a>
             </div>
 
-            <div class="home__social">
+            <!-- <div class="home__social">
                 <a href="" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
                 <a href="" class="home__social-icon"><i class='bx bxl-behance'></i></a>
                 <a href="" class="home__social-icon"><i class='bx bxl-github'></i></a>
-            </div>
+            </div> -->
 
-            <div class="home__img">
+            <!-- <div class="home__img">
                 <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
                     <mask id="mask0" mask-type="alpha">
@@ -628,7 +628,7 @@
                 </svg>
             </div>
         </section>
-    </main>
+    </main> -->
 
 
     <!--===== SCROLL REVEAL =====-->
