@@ -1,0 +1,105 @@
+<!-- [ Sidebar Menu ] start -->
+<nav class="pc-sidebar">
+    <div class="navbar-wrapper">
+        <div class="m-header">
+            <a href="{{url('/')}}" class="b-brand">
+                <!-- ========   Change your logo from here   ============ -->
+                <img src="{{asset('./images/logo/skb.png')}}" alt="" class="logo logo-lg" width="85%" />
+            </a>
+        </div>
+        <div class="navbar-content">
+            <ul class="pc-navbar">
+                <li class="pc-item pc-caption">
+                    <label>Dashboard</label>
+                    <i class="ti ti-dashboard"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="{{url('/home')}}" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-dashboard"></i></span><span class="pc-mtext">Dashboard</span></a>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-book"></i></span><span
+                            class="pc-mtext">Badan Hukum</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_legal')}}">Data</a></li>
+                        <li class="pc-item"><a class="pc-link" href="{{route('create_legal')}}">Buat Baru</a></li>
+                    </ul>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-key"></i></span><span
+                            class="pc-mtext">Penerbit</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_publisher')}}">Data</a>
+                        </li>
+                        <li class="pc-item"><a class="pc-link"
+                                href="{{route('create_publisher')}}">Buat Baru</a></li>
+                    </ul>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-clipboard"></i></span><span
+                            class="pc-mtext">Perusahaan</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_company')}}">Data</a>
+                        </li>
+                        <li class="pc-item"><a class="pc-link"
+                                href="{{route('create_company')}}">Buat Baru</a></li>
+                    </ul>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-archive"></i></span><span
+                            class="pc-mtext">Perizinan</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_licensing')}}">Laporan</a>
+                        </li>
+                        <li class="pc-item"><a class="pc-link"
+                                href="{{route('create_licensing')}}">Baru</a></li>
+                    </ul>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-list"></i></span><span
+                            class="pc-mtext">Perjanjian</span><span class="pc-arrow"><i
+                                class="ti ti-chevron-right"></i></span></a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_agreement')}}">Laporan</a>
+                        </li>
+                        <li class="pc-item"><a class="pc-link"
+                                href="{{route('create_agreement')}}">Buat</a></li>
+                    </ul>
+                </li>
+
+                <!-- <li class="pc-item pc-caption">
+                    <label>Company</label>
+                    <i class="ti ti-apps"></i>
+                </li>
+                <li class="pc-item">
+                    <a class="pc-link"><span class="pc-micon"><i class="ti ti-typography"></i></span><span
+                            class="pc-mtext">Typography</span></a>
+                </li>
+                <li class="pc-item">
+                    <a href="../elements/bc_color.html" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-brush"></i></span><span class="pc-mtext">Color</span></a>
+                </li>
+                <li class="pc-item">
+                    <a href="https://tablericons.com" class="pc-link" target="_blank"><span class="pc-micon"><i
+                                class="ti ti-plant-2"></i></span><span class="pc-mtext">Tabler</span><span
+                            class="pc-arrow"></a>
+                </li>
+
+                <li class="pc-item pc-caption">
+                    <label>Other</label>
+                    <i class="ti ti-brand-chrome"></i>
+                </li> -->
+                <li class="pc-item"><a href="{{route('index_user')}}" class="pc-link"><span class="pc-micon"><i
+                                class="ti ti-user"></i></span><span class="pc-mtext">Pengguna</span></a></li>
+                <li class="pc-item"><a href="{{route('index_mail')}}" 
+                        class="pc-link"><span class="pc-micon"><i class="ti bi-mailbox2"></i></span><span
+                            class="pc-mtext">Mail</span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- [ Sidebar Menu ] end -->
