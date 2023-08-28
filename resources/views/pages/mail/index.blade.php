@@ -41,24 +41,29 @@
                                     <i class="ti bi-three-dots-vertical"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><button class="dropdown-item" type="button" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)">Tambah Email</button></li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <a class="dropdown-item" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)" href="{{route('create_mail')}}">Tambah Mail</a>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <table class="table table-bordered" id="legalentity-table">
+                    <table class="table table-bordered" id="mail-table">
                         <thead>
                             <tr style="font-size: 13px;">
                                 <th>Mail Server</th>
                                 <th>Port</th>
                                 <th>SMTP</th>
                                 <th>Username</th>
-                                <th>Password</th>
-                                <th>Keterangan</th>
+                                <th>Default</th>
                                 <th>Bantuan</th>
                             </tr>
                         </thead>
-                        <tbody class="text-uppercase" style="font-size: 11px;">
+                        <tbody style="font-size: 11px;">
                         </tbody>
                     </table>
                 </div>
@@ -68,20 +73,21 @@
     </div>
     <!-- [ Main Content ] end -->
 </div>
-<!-- <script>
+<script>
     $(document).ready(function() {
-        $('#legalentity-table').DataTable({
+        $('#mail-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route("table_user") }}',
+            ajax: '{{ route("table_mail") }}',
             columns: [
-                {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'password_text', name: 'password_text'},
-                {data: 'level', name: 'level'},
+                {data: 'mail_server', name: 'mail_server'},
+                {data: 'port', name: 'port'},
+                {data: 'smtp', name: 'smtp'},
+                {data: 'username', name: 'username'},
+                {data: 'defaultChange', name: 'defaultChange'},
                 {data: 'action', name: 'action'},
             ]
         });
     });
-</script> -->
+</script>
 @endsection

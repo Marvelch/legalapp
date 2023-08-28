@@ -68,7 +68,8 @@ class AgreementController extends Controller
                 'renewal_date' => $request->renewal_date,
                 'date_notification' => @$extraTime,
                 'documents' => @$documents,
-                'description' => $request->description
+                'description' => $request->description,
+                'user_id' => Auth::user()->id
             ]);
 
             DB::commit();

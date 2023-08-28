@@ -25,6 +25,8 @@ return new class extends Migration
             $table->date('extra_time')->nullable();
             $table->string('documents')->nullable();
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

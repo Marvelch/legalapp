@@ -18,7 +18,7 @@ class LegalEntity extends Model
         'description'
     ];
 
-    public function legals() {
+    public function divisions() {
         return $this->belongsTo(Division::class,'division_id','id');
     }
 }

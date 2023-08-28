@@ -43,14 +43,16 @@ Route::group(['prefix' => 'user','middleware' => ['auth']], function(){
 
 Route::group(['prefix' => 'mail','middleware' => ['auth']], function(){
     Route::get('/',[MailServerController::class,'index'])->name('index_mail');
-    Route::get('/mail-data',[MailServerController::class,'mailTable'])->name('table_mail');
     Route::get('/tamplate',[MailServerController::class,'tamplate'])->name('index_tamplate');
     Route::get('/send-mail',[MailServerController::class,'sendMail'])->name('send_mail');
-    // Route::get('/delete/{id}',[LegalEntityController::class,'destroy'])->name('destroy_legal');
-    // Route::get('/create',[LegalEntityController::class,'create'])->name('create_legal');
-    // Route::get('/edit/{id}',[LegalEntityController::class,'edit'])->name('edit_legal');
-    // Route::post('/store',[LegalEntityController::class,'store'])->name('store_legal');
+    Route::get('/delete/{id}',[LegalEntityController::class,'destroy'])->name('destroy_legal');
+    Route::get('/create',[MailServerController::class,'create'])->name('create_mail');
+    Route::get('/edit/{id}',[LegalEntityController::class,'edit'])->name('edit_legal');
+    Route::get('/show/{id}',[LegalEntityController::class,'show'])->name('show_legal');
+    Route::post('/store',[MailServerController::class,'store'])->name('store_mail');
     // Route::put('/update/{id}',[LegalEntityController::class,'update'])->name('update_legal');
+    Route::get('/update-mail-default/{id}',[MailServerController::class,'updateMailDefault'])->name('update_mail_mail');
+    Route::get('/mail-data',[MailServerController::class,'mailTable'])->name('table_mail');
 });
 
 Route::group(['prefix' => 'legal','middleware' => ['auth']], function(){
@@ -59,6 +61,7 @@ Route::group(['prefix' => 'legal','middleware' => ['auth']], function(){
     Route::get('/delete/{id}',[LegalEntityController::class,'destroy'])->name('destroy_legal');
     Route::get('/create',[LegalEntityController::class,'create'])->name('create_legal');
     Route::get('/edit/{id}',[LegalEntityController::class,'edit'])->name('edit_legal');
+    Route::get('/show/{id}',[LegalEntityController::class,'show'])->name('show_legal');
     Route::post('/store',[LegalEntityController::class,'store'])->name('store_legal');
     Route::put('/update/{id}',[LegalEntityController::class,'update'])->name('update_legal');
 });

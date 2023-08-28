@@ -6,12 +6,9 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Legal Entity</h5>
-                    </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{url('/home')}}">Home</a>
+                            <a href="{{url('/home')}}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
                             Index
@@ -37,7 +34,7 @@
                                 <th>Bantuan</th>
                             </tr>
                         </thead>
-                        <tbody class="text-capitalize" style="font-size: 11px;">
+                        <tbody class="text-uppercase" style="font-size: 11px;">
                         </tbody>
                     </table>
                 </div>

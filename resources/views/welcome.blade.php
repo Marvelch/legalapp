@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('./images/logo/faviicon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('./images/logo/faviicon.png')}}">
 
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <!-- =====BOX ICONS===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Portfolio website complete</title>
+    <title>Legal SKB</title>
     <style>
         /*===== GOOGLE FONTS =====*/
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
@@ -218,7 +221,7 @@
         }
 
         .home__title {
-            font-size: var(--big-font-size);
+            font-size: 50px;
             margin-bottom: var(--mb-5);
         }
 
@@ -254,7 +257,7 @@
         }
 
         .home__blob-img {
-            width: 360px;
+            width: 90%;
         }
 
         /*BUTTONS*/
@@ -583,7 +586,7 @@
         <section class="home bd-grid" id="home">
             <div class="home__data">
                 <h1 class="home__title">Hi,<br>Selamat <span class="home__title-color">
-                    <?php
+                        <?php
                     date_default_timezone_set('Asia/Jakarta'); // Set zona waktu sesuai kebutuhan
 
                     $currentTime = time();
@@ -602,21 +605,20 @@
                     echo $timeOfDay;
 
                     ?>
-                </span><br> <span>Semangat !</span></h1>
-
-                <a href="#" class="button">Login</a>
+                    </span><br> <span>Semangat !</span></h1>
+                @if (Route::has('login'))
+                    @auth
+                    <a href="{{url('/home')}}" class="button" style="border-radius: 2px;">Dashboard</a>
+                    @else
+                    <a href="{{url('/login')}}" class="button" style="border-radius: 2px;">Login</a>
+                    @endauth
+                @endif
             </div>
 
-            <!-- <div class="home__social">
-                <a href="" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                <a href="" class="home__social-icon"><i class='bx bxl-behance'></i></a>
-                <a href="" class="home__social-icon"><i class='bx bxl-github'></i></a>
-            </div> -->
-
-            <!-- <div class="home__img">
+            <div class="home__img align-middle">
                 <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <mask id="mask0" mask-type="alpha">
+                    <!-- <mask id="mask0" mask-type="alpha">
                         <path
                             d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z" />
                     </mask>
@@ -624,11 +626,13 @@
                         <path
                             d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z" />
                         <image class="home__blob-img" x="50" y="60" href="https://sekarbumi.com/wp-content/uploads/2022/10/Logo-SKB-Horizontal-01-1-1.png" />
-                    </g>
+                    </g> -->
+                    <image class="home__blob-img" x="50" y="220" 
+                        href="https://sekarbumi.com/wp-content/uploads/2022/10/Logo-SKB-Horizontal-01-1-1.png" />
                 </svg>
             </div>
         </section>
-    </main> -->
+    </main>
 
 
     <!--===== SCROLL REVEAL =====-->

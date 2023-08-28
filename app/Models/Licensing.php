@@ -21,8 +21,13 @@ class Licensing extends Model
         'period',
         'extra_time',
         'documents',
-        'description'
+        'description',
+        'user_id'
     ];
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 
     public function legals() {
         return $this->belongsTo(LegalEntity::class,'legal_entity_id','id');

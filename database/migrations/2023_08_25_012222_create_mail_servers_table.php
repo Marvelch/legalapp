@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('description');
-            $table->string('default');
+            $table->string('default')->nullable();
             $table->timestamps();
         });
     }

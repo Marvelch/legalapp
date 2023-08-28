@@ -2,7 +2,7 @@
     <div class="footer-wrapper container-fluid">
         <div class="row">
             <div class="col my-1">
-                <p class="m-0">Copyright &copy; <a href="https://codedthemes.com/" target="_blank">Codedthemes</a></p>
+                <p class="m-0 text-sm">Copyright &copy; <a>Teknologi Informatika</a></p>
             </div>
             <!-- <div class="col-auto my-1">
                 <ul class="list-inline footer-link mb-0">

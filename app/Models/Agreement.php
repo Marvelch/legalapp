@@ -21,7 +21,8 @@ class Agreement extends Model
         'renewal_date',
         'date_notification',
         'documents',
-        'description'
+        'description',
+        'user_id'
     ];
 
     public function companys() {

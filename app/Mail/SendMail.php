@@ -13,12 +13,14 @@ class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $items;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($items)
     {
-        //
+        $this->items = $items;
     }
 
     /**
@@ -38,6 +40,9 @@ class SendMail extends Mailable
     {
         return new Content(
             view: 'pages.mail.tamplate',
+            with: [
+                'data' => $this->items
+            ]
         );
     }
 

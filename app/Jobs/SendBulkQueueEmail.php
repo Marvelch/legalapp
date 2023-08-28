@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\SendMail;
+use App\Models\Agreement;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,15 +15,15 @@ use Mail;
 class SendBulkQueueEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $details;
+    protected $items;
     public $timeout = 10; // 2 hours
 
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct($items)
     {
-        //
+        $this->items = $items;
     }
 
     /**
@@ -41,10 +42,17 @@ class SendBulkQueueEmail implements ShouldQueue
         //             ->subject($input['subject']);
         //     });
         // }
-        $mailTamplate = [
-            'title' => 'Legal Hello'
-        ];
+        // $mailTamplate = [
+        //     'title' => 'Legal Hello'
+        // ];
 
-        Mail::to('it@sekarbumi.com')->send(new SendMail($mailTamplate));
+        // Mail::to('Mr.marvel.christevan@gmail.com')->send(new SendMail($mailTamplate));
+
+        // $emails = Agreement
+
+        foreach($this->items as $item) {
+            $sendMail = new SendMail($item);
+            Mail::to($item->users->email)->send($sendMail);
+        }
     }
 }

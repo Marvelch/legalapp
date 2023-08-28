@@ -66,10 +66,12 @@
                                             <td>Waktu Perpanjangan</td>
                                             <td>: {{date('d-m-Y',strtotime($licensings->extra_time))}}</td>
                                         </tr>
+                                        @if($licensings->documents)
                                         <tr>
                                             <td>Dokumen Pendukung</td>
                                             <td>: <a href="{{route('download_licensing',['id'=>Crypt::encryptString($licensings->documents)])}}">Download File</a></td>
                                         </tr>
+                                        @endif
                                         <tr>
                                             <td>Keterangan</td>
                                             <td>: {{ $licensings->description}}</td>

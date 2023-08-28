@@ -53,10 +53,10 @@
                             class="pc-mtext">Perizinan</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="{{route('index_licensing')}}">Laporan</a>
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_licensing')}}">Data</a>
                         </li>
                         <li class="pc-item"><a class="pc-link"
-                                href="{{route('create_licensing')}}">Baru</a></li>
+                                href="{{route('create_licensing')}}">Buat Baru</a></li>
                     </ul>
                 </li>
                 <li class="pc-item pc-hasmenu">
@@ -64,7 +64,7 @@
                             class="pc-mtext">Perjanjian</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="{{route('index_agreement')}}">Laporan</a>
+                        <li class="pc-item"><a class="pc-link" href="{{route('index_agreement')}}">Data</a>
                         </li>
                         <li class="pc-item"><a class="pc-link"
                                 href="{{route('create_agreement')}}">Buat</a></li>

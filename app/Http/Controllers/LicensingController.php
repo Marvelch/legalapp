@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class LicensingController extends Controller
 {
@@ -70,7 +71,8 @@ class LicensingController extends Controller
                 'period' => $request->period,
                 'extra_time' => @$extraTime,
                 'documents' => @$documents,
-                'description' => strtolower($request->description)
+                'description' => strtolower($request->description),
+                'user_id' => Auth::user()->id
             ]);
 
             DB::commit();
@@ -81,8 +83,10 @@ class LicensingController extends Controller
             //throw $th;
             DB::rollback();
 
-            Alert::error('FAIL','Failed to save because we ran into a problem');
-            return back();
+            // Alert::error('FAIL','Failed to save because we ran into a problem');
+            // return back();
+
+            return $th->getMessage();
         }
     }
 
@@ -156,8 +160,10 @@ class LicensingController extends Controller
             //throw $th;
             DB::rollback();
 
-            Alert::error('FAIL','Failed to save because we ran into a problem');
-            return back();
+            // Alert::error('FAIL','Failed to save because we ran into a problem');
+            // return back();
+
+            return $th->getMessage();
         }
     }
 

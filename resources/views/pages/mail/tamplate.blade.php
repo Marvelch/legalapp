@@ -41,11 +41,11 @@
                                 </tr>
                                 <tr>
                                     <td style="padding:0 35px;">
-                                        <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">Hi Marvel Ch
+                                        <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">Hi {{ $data->users->name }}
                                         </h1>
                                         <br>
                                         <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                            Mail pemberitahuan untuk pengingat dari sistem legal, Pastikan memeriksa perizinan #901828 pemberitahuan ini pengingat pada tanggal 08-25-2023 <br><br><strong> Periksa dokumen dan detail pengingat pada layanan Legal</strong>.</p>
+                                            Email pemberitahuan untuk pengingat dari sistem legal, Pastikan memeriksa perizinan #{{ $data->permit_number }} - {{ $data->permit_name }}  pemberitahuan ini pengingat pada tanggal {{date('d-m-Y',strtotime($data->date_end))}} <br><br><strong> Periksa dokumen dan detail pengingat pada layanan Legal</strong>.</p>
                                         <br>
 
                                         <a href="#"
