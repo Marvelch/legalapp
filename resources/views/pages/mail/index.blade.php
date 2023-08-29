@@ -44,7 +44,7 @@
                                     <li>
                                         <div class="row">
                                             <div class="col-auto">
-                                                <a class="dropdown-item" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)" href="{{route('create_mail')}}">Tambah Mail</a>
+                                                <a class="dropdown-item" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)" href="{{route('create_mail')}}">Tambah Mail Server</a>
                                             </div>
                                         </div>
                                     </li>

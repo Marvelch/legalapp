@@ -30,14 +30,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'user','middleware' => ['auth']], function(){
+Route::get('/unauthorized', function() {
+     return view('401');
+})->name('home');
+
+Route::group(['prefix' => 'user','middleware' => ['auth', 'user-access:admin']], function(){
     Route::get('/',[UsersController::class,'index'])->name('index_user');
     Route::get('/user-data',[UsersController::class,'userTable'])->name('table_user');
-    // Route::get('/delete/{id}',[LegalEntityController::class,'destroy'])->name('destroy_legal');
-    // Route::get('/create',[LegalEntityController::class,'create'])->name('create_legal');
-    // Route::get('/edit/{id}',[LegalEntityController::class,'edit'])->name('edit_legal');
-    // Route::post('/store',[LegalEntityController::class,'store'])->name('store_legal');
-    // Route::put('/update/{id}',[LegalEntityController::class,'update'])->name('update_legal');
+    Route::get('/create',[UsersController::class,'create'])->name('create_user');
+    Route::get('/delete/{id}',[UsersController::class,'destroy'])->name('destroy_user');
+    Route::get('/edit/{id}',[UsersController::class,'edit'])->name('edit_user');
+    Route::post('/store',[UsersController::class,'store'])->name('store_user');
+    Route::put('/update/{id}',[UsersController::class,'update'])->name('update_user');
 });
 
 
@@ -48,7 +52,7 @@ Route::group(['prefix' => 'mail','middleware' => ['auth']], function(){
     Route::get('/delete/{id}',[LegalEntityController::class,'destroy'])->name('destroy_legal');
     Route::get('/create',[MailServerController::class,'create'])->name('create_mail');
     Route::get('/edit/{id}',[LegalEntityController::class,'edit'])->name('edit_legal');
-    Route::get('/show/{id}',[LegalEntityController::class,'show'])->name('show_legal');
+    Route::get('/show/{id}',[MailServerController::class,'show'])->name('show_legal');
     Route::post('/store',[MailServerController::class,'store'])->name('store_mail');
     // Route::put('/update/{id}',[LegalEntityController::class,'update'])->name('update_legal');
     Route::get('/update-mail-default/{id}',[MailServerController::class,'updateMailDefault'])->name('update_mail_mail');
@@ -72,6 +76,8 @@ Route::group(['prefix' => 'publisher','middleware' => ['auth']], function(){
     Route::get('/edit/{id}',[PublisherController::class,'edit'])->name('edit_publisher');
     Route::post('/store',[PublisherController::class,'store'])->name('store_publisher');
     Route::put('/update/{id}',[PublisherController::class,'update'])->name('update_publisher');
+    Route::get('/publisher-data',[PublisherController::class,'publisherTable'])->name('table_publisher');
+    Route::get('/delete/{id}',[PublisherController::class,'destroy'])->name('destroy_publisher');
 });
 
 Route::group(['prefix' => 'company','middleware' => ['auth']], function(){

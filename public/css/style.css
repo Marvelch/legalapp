@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&family=Nunito&family=Poppins&family=Quicksand:wght@500&family=Roboto+Condensed&family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&family=Nunito&family=Poppins&family=Quicksand:wght@500&family=Roboto+Condensed&family=Roboto:wght@300&display=swap");
 
 @charset "UTF-8";
 :root {
@@ -46,7 +46,7 @@
     --bs-body-color-rgb: 33, 37, 41;
     --bs-body-bg-rgb: 236, 239, 241;
     --bs-font-sans-serif: "Roboto", sans-serif;
-    --bs-font-sans-nunito: 'Nunito', sans-serif;
+    --bs-font-sans-nunito: "Nunito", sans-serif;
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(
@@ -20007,4 +20007,48 @@ select.form-control[data-multiselectsplitter-secondselect-selector] {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+/* Timeline */
+
+.btns-container {
+    padding-top: 100px;
+    text-align: center;
+}
+
+.btn-ok {
+    display: inline-block;
+    padding: 12px 15px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Primary Button and variant
+   -------------------------- */
+.btn-default {
+    color: #ffffff;
+    border-color: #7ed8c6;
+    background-color: #7ed8c6;
+    background-size: 0 100%;
+    background-image: linear-gradient(to left, #43c6ac, #43c6ac);
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        border-color: #43c6ac;
+        background-color: #7ed8c6;
+        background-image: linear-gradient(to right, #43c6ac, #43c6ac);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition: all 0.5s;
+    }
 }

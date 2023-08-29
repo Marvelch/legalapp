@@ -6,15 +6,12 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Users</h5>
-                    </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{url('/home')}}">Home</a>
+                            <a href="{{url('/home')}}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Index
+                            Utama
                         </li>
                     </ul>
                 </div>
@@ -27,7 +24,29 @@
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body my-5">
+                <div class="card-body my-1">
+                    <div class="row">
+                        <div class="col">
+                            
+                        </div>
+                        <div class="col-auto">
+                            <div class="btn-group">
+                                <a type="button" class="dropdown-toggle arrow-none"
+                                    data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; margin-right: 20px;">
+                                    <i class="ti bi-three-dots-vertical"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <a class="dropdown-item" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)" href="{{route('create_user')}}">Tambah Pengguna</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-bordered" id="legalentity-table">
                         <thead>
                             <tr style="font-size: 13px;">

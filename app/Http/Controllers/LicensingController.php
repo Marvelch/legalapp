@@ -8,13 +8,13 @@ use App\Models\Licensing;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 use Alert;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class LicensingController extends Controller
 {

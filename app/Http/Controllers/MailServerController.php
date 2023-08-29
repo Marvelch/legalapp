@@ -10,6 +10,7 @@ use DB;
 use Alert;
 use Yajra\DataTables\Facades\DataTables;
 use App\Mail\SendMail;
+use App\Models\Agreement;
 use App\Models\Licensing;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
@@ -78,9 +79,11 @@ class MailServerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MailServer $mailServer)
+    public function show(MailServer $mailServer, $id)
     {
-        //
+        $mail = MailServer::find(Crypt::decryptString($id));
+
+        return view('pages.mail.show',compact('mail'));
     }
 
     /**
@@ -116,7 +119,9 @@ class MailServerController extends Controller
 
         $items = Licensing::where('extra_time',date('Y-m-d',strtotime(now())))->get();
 
-        $job = (new SendBulkQueueEmail($items))
+        $items_agg = Agreement::where('date_notification',date('Y-m-d',strtotime(now())))->get();
+
+        $job = (new SendBulkQueueEmail($items,$items_agg))
             ->delay(
             	now()
             	->addSeconds(2)

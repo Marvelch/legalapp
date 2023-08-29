@@ -28,4 +28,8 @@ class Agreement extends Model
     public function companys() {
         return $this->belongsTo(Company::class,'company_id','id');
     }
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

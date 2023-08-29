@@ -12,6 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 use File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class AgreementController extends Controller

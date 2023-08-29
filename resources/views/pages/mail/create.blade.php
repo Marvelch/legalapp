@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2" style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Nama Mail Server</label>
-                                        <input type="text" name="mail_server" class="form-control form-control-sm text-lowercase" value="{{old('mail_server')}}">
+                                        <input type="text" name="mail_server" class="form-control form-control-sm text-uppercase" value="{{old('mail_server')}}">
                                         @error('mail_server')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror

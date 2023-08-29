@@ -8,9 +8,8 @@
             </a>
         </div>
         <div class="navbar-content">
-            <ul class="pc-navbar">
+            <ul class="pc-navbar" style="font-family: var(--bs-font-sans-serif);">
                 <li class="pc-item pc-caption">
-                    <label>Dashboard</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
@@ -67,7 +66,7 @@
                         <li class="pc-item"><a class="pc-link" href="{{route('index_agreement')}}">Data</a>
                         </li>
                         <li class="pc-item"><a class="pc-link"
-                                href="{{route('create_agreement')}}">Buat</a></li>
+                                href="{{route('create_agreement')}}">Buat Baru</a></li>
                     </ul>
                 </li>
 
@@ -93,11 +92,13 @@
                     <label>Other</label>
                     <i class="ti ti-brand-chrome"></i>
                 </li> -->
+                @if(Auth::user()->type == 'admin')
                 <li class="pc-item"><a href="{{route('index_user')}}" class="pc-link"><span class="pc-micon"><i
                                 class="ti ti-user"></i></span><span class="pc-mtext">Pengguna</span></a></li>
                 <li class="pc-item"><a href="{{route('index_mail')}}" 
                         class="pc-link"><span class="pc-micon"><i class="ti bi-mailbox2"></i></span><span
                             class="pc-mtext">Mail</span></a></li>
+                @endif
             </ul>
         </div>
     </div>
