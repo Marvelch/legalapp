@@ -14,7 +14,7 @@
                             <a href="{{url('/legal')}}">Badan Hukum</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Create
+                            Buat Baru
                         </li>
                     </ul>
                 </div>
@@ -27,16 +27,20 @@
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body my-5">
+                <div class="card-body my-3">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-8">
+                            <h2>Badan Hukum</h2>
+                            <p class="text-muted" style="font-size: 11px;">Pastikan penginputan badan hukum sudah sesuai field terlampir</p>
+                        </div>
+                        <div class="col-md-8 mt-3">
                             <form action="{{route('store_legal')}}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2" style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Badan
                                             Hukum</label>
-                                        <input type="text" name="name" class="form-control form-control-sm text-uppercase" value="{{old('name')}}">
+                                        <input type="text" name="name" class="form-control form-control-sm text-uppercase" value="{{old('name')}}" required>
                                         @error('name')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -46,7 +50,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2"
                                             style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Alamat</label>
-                                        <input type="text" name="address" class="form-control form-control-sm text-capitalize" value="{{old('address')}}">
+                                        <input type="text" name="address" class="form-control form-control-sm text-capitalize" value="{{old('address')}}" required>
                                          @error('address')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -57,7 +61,7 @@
                                         <label class="mb-2" style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Divisi
                                             Perusahaan</label>
                                         <select name="division" class="form-select form-select-sm"
-                                            aria-label=".form-select-sm example">
+                                            aria-label=".form-select-sm example" required>
                                             @foreach($items as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach

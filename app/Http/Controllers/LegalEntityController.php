@@ -152,10 +152,8 @@ class LegalEntityController extends Controller
         } catch (\Throwable $th) {
              DB::rollback();
 
-            // Alert::error('FAIL','Failed to delete data, please check again');
-            // return back();
-
-            return $th->getMessage();
+            Alert::error('FAIL','Failed to delete data, please check again');
+            return back();
         }
     }
 
@@ -176,20 +174,20 @@ class LegalEntityController extends Controller
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/alert-notification-8400231-6672344.png" style="width: 100%;"/>
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/alert-notification-8400231-6672344.png" width="20%"/>
                                     </div>
-                                    <div class="col-8 text-sm">
+                                    <div class="col-12 text-smt text-center">
                                         <div class="from group mb-3">
-                                        <h5 class="mt-2">'.$model->name.'</h5>
+                                            <h5 class="mt-2">'.$model->name.'</h5>
                                         </div>
-                                        <span style="font-size: 10px;" class="text-lowercase">Proses penghapusan data akan dilakukan secara permanen dari layanan legal, yakin '.Auth::user()->name.' ingin menghapus ?</span>
+                                        <span class="text-lowercase text-sm" style="font-family: var(--bs-font-sans-serif);">Konfirmasi penghapusan data akan menyebabkan kehilangan informasi secara permanen dari layanan legal</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary text-sm" data-bs-dismiss="modal" style="border-radius: 50%;"><i class="bi bi-x fa-lg"></i></button>
-                                <a href="/legal/delete/'.$model->id.'" class="btn btn-primary text-sm text-capitalize" style="border-radius: 50%;"><i class="bi bi-check-lg fa-lg"></i></a>
+                                <button type="button" class="btn btn-danger"><i class="bi bi-x-circle" data-bs-dismiss="modal"></i></button>
+                                <a type="/legal/delete/'.$model->id.'" class="btn btn-primary"><i class="bi bi-check2-circle"></i></a>
                             </div>
                             </div>
                         </div>

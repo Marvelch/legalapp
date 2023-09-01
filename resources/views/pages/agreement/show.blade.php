@@ -105,6 +105,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if(@$agreements->documents)
                                     <div class="col-md-12">
                                         <div class="card" style="border-left: 0.2rem solid #54b95b;">
                                             <div class="card-body">
@@ -113,12 +114,13 @@
                                                         <button class="btn-ok btn-default w-100">Preview</button>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <a class="btn-ok btn-default w-100" href="{{route('download_agreement',['id'=>Crypt::encryptString($agreements->documents)])}}" style="color: #ffff">Download</a>
+                                                        <button class="btn-ok btn-default w-100" href="{{route('download_agreement',['id'=>Crypt::encryptString($agreements->documents)])}}" style="color: black">Download</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

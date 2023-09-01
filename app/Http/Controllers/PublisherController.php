@@ -8,6 +8,7 @@ use DB;
 use Alert;
 use Yajra\DataTables\Facades\DataTables;
 use App\DataTables\PublisherDataTable;
+use App\Models\Licensing;
 use Illuminate\Support\Facades\Crypt;
 
 class PublisherController extends Controller
@@ -116,9 +117,32 @@ class PublisherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Publisher $publisher)
+    public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $checkLegal = Licensing::select('publisher_id')->where('publisher_id',$id)->first();
+
+            if($checkLegal) {
+                DB::rollback();
+                Alert::info('CANT','Deletion not allowed, has been used');
+
+                return back();
+            }else{
+                Publisher::find($id)->delete();
+            }
+            
+            DB::commit();
+            Alert::success('SUCCEED','Data deletion has been successful');
+
+            return back();
+        } catch (\Throwable $th) {
+             DB::rollback();
+
+            Alert::error('FAIL','Failed to delete data, please check again');
+            return back();
+        }
     }
 
     /**
@@ -148,8 +172,8 @@ class PublisherController extends Controller
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary text-sm" data-bs-dismiss="modal">Batal</button>
-                                <a href="/publisher/delete/'.$model->id.'" class="btn btn-danger text-sm">Hapus</a>
+                                <button type="button" class="btn btn-danger btn-xs btn-round" data-bs-dismiss="modal"><i class="bi bi-x" style="margin-left: -5px;"></i></button>
+                                <a href="/publisher/delete/'.$model->id.'" class="btn btn-primary btn-xs btn-round"><i class="bi bi-check" style="margin-left: -5px;"></i></a>
                             </div>
                             </div>
                         </div>

@@ -27,7 +27,7 @@
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body my-2">
                     <div class="row">
                         <div class="col">
                             <div class="avtar avtar-lg">

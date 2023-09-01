@@ -39,7 +39,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Nama Lengkap</label>
                                         <input type="text" name="name" class="form-control form-control-sm"
-                                            value="{{old('name')}}">
+                                            value="{{old('name')}}" required>
                                         @error('name')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -49,7 +49,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Email</label>
                                         <input type="text" name="email" class="form-control form-control-sm"
-                                            value="{{old('email')}}">
+                                            value="{{old('email')}}" required>
                                         @error('email')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -59,7 +59,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Kata Sandi</label>
                                         <input type="text" name="password" class="form-control form-control-sm"
-                                            value="{{old('password')}}">
+                                            value="{{old('password')}}" required>
                                         @error('password')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -70,7 +70,7 @@
                                         <label class="mb-2" style="margin-left: 3px;">Level</label>
                                         <select name="level" id="publisher" name="level"
                                             class="form-control form-control-sm text-capitalize" 
-                                            style="width: 100%;">
+                                            style="width: 100%;" required>
                                             <option value="0" selected>Users (Pengguna)</option>
                                             <option value="1">Manager</option>
                                             <option value="2">Admin</option>

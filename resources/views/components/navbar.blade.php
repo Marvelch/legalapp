@@ -54,10 +54,9 @@
           </a>
           <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
             <div class="dropdown-header">
-              <a href="#!" class="link-primary float-end text-decoration-underline">Mark as all read</a>
-              <h5>All Notification <span class="badge bg-warning rounded-pill ms-1">01</span></h5>
+              <h5>All Notification <span class="badge bg-warning rounded-pill ms-1">1</span></h5>
             </div>
-            <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative"
+            <!-- <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative"
               style="max-height: calc(100vh - 215px)">
               <div class="list-group list-group-flush w-100">
                 <div class="list-group-item">
@@ -138,7 +137,7 @@
                   </div>
                 </a>
               </div>
-            </div>
+            </div> -->
             <div class="dropdown-divider"></div>
             <div class="text-center py-2">
               <a href="#!" class="link-primary">Mark as all read</a>
@@ -163,10 +162,13 @@
                   <i class="ti ti-user"></i>
                   <span>Social Profile</span>
                 </a> -->
-                <a href="../pages/login-v3.html" class="dropdown-item">
-                  <i class="ti ti-logout"></i>
-                  <span>Logout</span>
-                </a>
+                <form action="/logout" method="POST">
+                @csrf
+                  <button type="submit" class="dropdown-item">
+                    <i class="ti ti-logout"></i>
+                    <span>Logout</span>
+                  </button>
+                </form>
               </div>
             </div>
           </div>

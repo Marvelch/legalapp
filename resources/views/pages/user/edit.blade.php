@@ -40,7 +40,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Nama Lengkap</label>
                                         <input type="text" name="name" class="form-control form-control-sm"
-                                            value="{{@$users->name}}">
+                                            value="{{@$users->name}}" required>
                                         @error('name')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -50,7 +50,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Email</label>
                                         <input type="text" name="email" class="form-control form-control-sm"
-                                            value="{{@$users->email}}">
+                                            value="{{@$users->email}}" required>
                                         @error('email')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -60,7 +60,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Kata Sandi</label>
                                         <input type="text" name="password" class="form-control form-control-sm"
-                                            value="{{@$users->password_text}}">
+                                            value="{{@$users->password_text}}" required>
                                         @error('password')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -71,7 +71,7 @@
                                         <label class="mb-2" style="margin-left: 3px;">Level</label>
                                         <select name="type" id="publisher"
                                             class="form-control form-control-sm text-capitalize" 
-                                            style="width: 100%;">
+                                            style="width: 100%;" required>
                                             <option value="0" {{$users->type == 'user' ? 'selected' : ''}}>Users (Pengguna)</option>
                                             <option value="1" {{$users->type == 'manager' ? 'selected' : ''}}>Manager</option>
                                             <option value="2" {{$users->type == 'admin' ? 'selected' : ''}}>Admin</option>

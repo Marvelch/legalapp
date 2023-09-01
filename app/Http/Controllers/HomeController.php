@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agreement;
+use App\Models\Company;
+use App\Models\Licensing;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $com_counts = Company::count();
+        $agg_counts = Agreement::count();
+        $lic_counts = Licensing::count();
+        $pub_counts = Publisher::count();
+
+        return view('home',compact('com_counts','agg_counts','lic_counts','pub_counts'));
     }
 }

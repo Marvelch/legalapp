@@ -35,7 +35,7 @@
                                  <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Badan Hukum</label>
-                                        <select name="legal_entity" class="legal_entity" id="legal_entity" class="form-control form-control-sm" name="state" style="width: 100%; text-transform:uppercase;">
+                                        <select name="legal_entity" class="legal_entity" id="legal_entity" class="form-control form-control-sm" name="state" style="width: 100%; text-transform:uppercase;" required>
                                         </select>
                                         @error('legal_entity')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>
@@ -46,7 +46,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2"
                                             style="margin-left: 3px;">Nomor Perizinan</label>
-                                            <input type="text" name="permit_number" class="form-control form-control-sm" value="{{old('address')}}">
+                                            <input type="text" name="permit_number" class="form-control form-control-sm" value="{{old('address')}}" required>
                                             @error('permit_number')
                                                 <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -56,7 +56,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2"
                                             style="margin-left: 3px;">Nama Perizinan</label>
-                                            <input type="text" name="permit_name" class="form-control form-control-sm" value="{{old('address')}}">
+                                            <input type="text" name="permit_name" class="form-control form-control-sm" value="{{old('address')}}" required>
                                             @error('permit_name')
                                                 <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -65,7 +65,7 @@
                                 <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Nama Instansi</label>
-                                        <select name="publisher" id="publisher" name="publisher_id" class="form-control form-control-sm" name="state" style="width: 100%; text-transform:uppercase;">
+                                        <select name="publisher" id="publisher" name="publisher_id" class="form-control form-control-sm" name="state" style="width: 100%; text-transform:uppercase;" required>
                                         </select>
                                         @error('publisher')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>
@@ -76,7 +76,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2"
                                             style="margin-left: 3px;">Tanggal Terbit</label>
-                                            <input type="date" name="date_start" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}">
+                                            <input type="date" name="date_start" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}" required>
                                             @error('date_start')
                                                 <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -86,7 +86,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2"
                                             style="margin-left: 3px;">Tanggal Berlaku</label>
-                                            <input type="date" name="date_end" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}">
+                                            <input type="date" name="date_end" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}" required>
                                             @error('date_end')
                                                 <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -98,7 +98,7 @@
                                             style="margin-left: 3px;">Periode Perpanjangan</label>
                                         <div class="input-group mb-3">
                                         <input name="period" type="text" class="form-control" style="height: 30px;">
-                                        <span class="input-group-text" id="basic-addon2" style="height: 30px;">hari</span>
+                                        <span class="input-group-text" id="basic-addon2" style="height: 30px; border-radius: 0px;">Hari</span>
                                         </div>
                                         @error('period')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>

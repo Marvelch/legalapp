@@ -10,6 +10,7 @@ use App\Http\Controllers\UsersController;
 use App\Models\LegalEntity;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,4 +120,11 @@ Route::group(['prefix' => 'agreement','middleware' => ['auth']], function(){
     Route::get('/delete/{id}',[AgreementController::class,'destroy'])->name('destroy_agreement');
 
     Route::get('/search-company',[AgreementController::class,'searchingCompany'])->name('searching_company');
+});
+
+Route::post('/logout', function() {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/login');
 });

@@ -14,7 +14,7 @@
                             <a href="{{url('/legal')}}">Badan Hukum</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Edit
+                            Ubah
                         </li>
                     </ul>
                 </div>
