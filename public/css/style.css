@@ -20049,3 +20049,21 @@ select.form-control[data-multiselectsplitter-secondselect-selector] {
     font-size: 12px;
     line-height: 1.42857;
 }
+
+.sub_title {
+    font-size: 11px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.sub_hr {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.btn-flat {
+    border-radius: 0px;
+    width: 100px;
+}
+
+

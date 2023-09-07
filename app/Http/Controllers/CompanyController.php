@@ -51,7 +51,8 @@ class CompanyController extends Controller
             Company::create([
                 'name' => strtolower($request->name),
                 'address' => strtolower($request->address),
-                'division_id' => $request->division
+                'division_id' => $request->division,
+                'information' => $request->information
             ]);
 
             DB::commit();
@@ -177,7 +178,7 @@ class CompanyController extends Controller
                                     <div class="from group mb-3">
                                     <h5 class="mt-2">'.$model->name.'</h5>
                                     </div>
-                                    <span style="font-size: 10px;" class="text-lowercase">Proses penghapusan data akan dilakukan secara permanen dari layanan legal, yakin '.Auth::user()->name.' ingin menghapus ?</span>
+                                    <span style="font-size: 10px;" class="text-lowercase">Penghapusan akan dilakukan secara permanen dari sistem, pastikan penghapusan telah sesuai.</span>
                                 </div>
                             </div>
                         </div>

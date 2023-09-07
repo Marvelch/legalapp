@@ -26,7 +26,7 @@
     <div class="row">
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
-            <div class="card" style="background-image: url('https://cdn.wallpapersafari.com/4/53/lGdYRW.jpg');">
+            <div class="card">
                 <div class="card-body my-5 d-flex justify-content-center">
                     <div class="col-10 mt-4">
                         <div class="card">

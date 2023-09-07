@@ -11,10 +11,13 @@
                     </div> -->
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{url('/home')}}">Home</a>
+                            <a href="{{url('/home')}}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{url('/index_licensing')}}">Utama</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Create
+                            Buat Baru
                         </li>
                     </ul>
                 </div>
@@ -30,101 +33,151 @@
                 <div class="card-body my-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-8">
+                            <h3><i class="bi bi-bookmark-check-fill text-success"></i> <span
+                                    class="h5 text-uppercase">buat perizinan</span></h3>
+                            <p class="sub_title text-muted ml-1">Penghatikan penginputan setiap kolom untuk menghindari
+                                kesalahan pada sistem.</p>
+                            <hr class="sub_hr">
                             <form action="{{route('store_licensing')}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2" style="margin-left: 3px;">Badan Hukum</label>
-                                        <select name="legal_entity" class="legal_entity" id="legal_entity" class="form-control form-control-sm" name="state" style="width: 100%; text-transform:uppercase;" required>
+                                        <label class="mb-2" style="margin-left: 3px;">Pilih Perusahaan</label>
+                                        <select name="company" class="company" id="company"
+                                            class="form-control form-control-sm" name="company"
+                                            style="width: 100%; text-transform:uppercase;" required>
                                         </select>
-                                        @error('legal_entity')
-                                            <p class="text-sm text-danger">*{{ $message }}</p]>
-                                        @enderror
+                                        @error('company')
+                                        <p class="text-sm text-danger">*{{ $message }}</p]>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="margin-left: 3px;">Nomor Perizinan</label>
-                                            <input type="text" name="permit_number" class="form-control form-control-sm" value="{{old('address')}}" required>
-                                            @error('permit_number')
-                                                <p class="text-sm text-danger">*{{ $message }}</p]>
+                                        <label class="mb-2" style="margin-left: 3px;">No Perizinan</label>
+                                        <input type="text" name="permit_number" class="form-control form-control-sm"
+                                            value="{{old('address')}}" required>
+                                        @error('permit_number')
+                                        <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
-                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="margin-left: 3px;">Nama Perizinan</label>
-                                            <input type="text" name="permit_name" class="form-control form-control-sm" value="{{old('address')}}" required>
-                                            @error('permit_name')
-                                                <p class="text-sm text-danger">*{{ $message }}</p]>
+                                        <label class="mb-2" style="margin-left: 3px;">Nama Perizinan</label>
+                                        <input type="text" name="permit_name" class="form-control form-control-sm"
+                                            value="{{old('address')}}" required>
+                                        @error('permit_name')
+                                        <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
-                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Nama Instansi</label>
-                                        <select name="publisher" id="publisher" name="publisher_id" class="form-control form-control-sm" name="state" style="width: 100%; text-transform:uppercase;" required>
+                                        <select name="publisher" id="publisher" name="publisher_id"
+                                            class="form-control form-control-sm" name="state"
+                                            style="width: 100%; text-transform:uppercase;" required>
                                         </select>
                                         @error('publisher')
-                                            <p class="text-sm text-danger">*{{ $message }}</p]>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="margin-left: 3px;">Tanggal Terbit</label>
-                                            <input type="date" name="date_start" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}" required>
-                                            @error('date_start')
-                                                <p class="text-sm text-danger">*{{ $message }}</p]>
+                                        <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="margin-left: 3px;">Tanggal Berlaku</label>
-                                            <input type="date" name="date_end" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}" required>
+                                        <label class="mb-2" style="margin-left: 3px;">Tanggal Terbit</label>
+                                        <input type="date" name="date_start" class="form-control form-control-sm"
+                                            value="{{ now()->format('Y-m-d') }}" required>
+                                        @error('date_start')
+                                        <p class="text-sm text-danger">*{{ $message }}</p]>
+                                            @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group pt-2">
+                                    <div class="mb-4">
+                                        <table class="table table-bordered text-sm" style="border-radius: 10px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-6 text-sm text-center"><i
+                                                            class="bi bi-calendar-date"
+                                                            style="font-size: 15px; margin-right: 10px;"></i> <span
+                                                            style="margin-left: 20xp;">Pilih Tanggal Berakhir</span>
+                                                    </td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input endDate" name="endDate"
+                                                                type="checkbox" id="flexSwitchCheckDefault"
+                                                                style="width: 35px; height: 20px;">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="hihow">
+                                    <div class="form-group">
+                                        <div class="mb-4">
+                                            <label class="mb-2" style="margin-left: 3px;">Tanggal Berakhir</label>
+                                            <input type="date" name="date_end" class="form-control form-control-sm"
+                                                value="{{ now()->format('Y-m-d') }}" required>
                                             @error('date_end')
-                                                <p class="text-sm text-danger">*{{ $message }}</p]>
-                                            @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="margin-left: 3px;">Periode Perpanjangan</label>
-                                        <div class="input-group mb-3">
-                                        <input name="period" type="text" class="form-control" style="height: 30px;">
-                                        <span class="input-group-text" id="basic-addon2" style="height: 30px; border-radius: 0px;">Hari</span>
-                                        </div>
-                                        @error('period')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>
-                                        @enderror
+                                                @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="mb-4">
+                                            <label class="mb-2" style="margin-left: 3px;">Periode Perpanjangan</label>
+                                            <div class="input-group mb-3">
+                                                <input name="period" type="text" class="form-control"
+                                                    style="height: 30px;">
+                                                <span class="input-group-text" id="basic-addon2"
+                                                    style="height: 30px; border-radius: 0px;">Hari</span>
+                                            </div>
+                                            @error('period')
+                                            <p class="text-sm text-danger">*{{ $message }}</p]>
+                                                @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="margin-left: 3px;">Dokumen</label>
-                                            <input type="file" name="documents" class="form-control form-control-sm" value="{{ now()->format('Y-m-d') }}">
-                                            @error('documents')
-                                                <p class="text-sm text-danger">*{{ $message }}</p]>
-                                            @enderror
+                                    <!-- <div class="mb-4">
+                                        <label class="mb-2" style="margin-left: 3px;">Dokumen</label>
+                                        <div class="input-group mb-3" id="document1">
+                                            <input type="file" name="document[]" class="form-control form-control-sm"
+                                                id="document">
+                                            <label type="button" class="input-group-text btn-add-more" style="cursor: pointer;"><i
+                                                    class="bi bi-plus-circle"></i></label>
+                                        </div>
+                                    </div> -->
+                                    <div class="input-group hdtuto control-group lst increment">
+                                        <input type="file" name="document[]" class="myfrm form-control form-control-sm">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success btn-sm" type="button" style="border-radius: 0px;"><i class="bi bi-plus-circle pt-1"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="clone hide">
+                                        <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                            <input type="file" name="document[]" class="myfrm form-control form-control-sm">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger btn-sm" type="button" style="border-radius: 0px;"><i
+                                                        class="bi bi-dash-lg"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-5">
                                     <div class="mb-4">
                                         <label class="mb-2">Keterangan</label>
-                                        <textarea name="description" id="" cols="30" rows="4" class="form-control form-control-sm"></textarea>
+                                        <textarea name="description" id="" cols="30" rows="4"
+                                            class="form-control form-control-sm"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group content-justify-end">
-                                    <div class="mb-4">
-                                        <button class="btn btn-primary text-sm" type="submit">Simpan</button>
-                                    </div>
+                                <div class="form-group d-flex justify-content-end my-4">
+                                    <button class="btn btn-primary btn-flat text-sm" type="submit"
+                                        style="border-radius: 0px;">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -137,44 +190,77 @@
     <!-- [ Main Content ] end -->
 </div>
 <script>
-    $('#legal_entity').select2({
-    minimumInputLength: 2,
-    ajax: {
-        url: '{{route("searching_licensing")}}',
-        dataType: 'json',
-        delay: 250,
-        processResults: function (data) {
-            return {
-                results: $.map(data, function(item) {
-                    return {
-                        text: item.name,
-                        id: item.id
-                    }
-                })
-            };
-        },
-        cache: true
-    }
-});
+    $('.hide').hide();
+    $('.hihow').hide();
 
-$('#publisher').select2({
-    minimumInputLength: 2,
-    ajax: {
-        url: '{{route("searching_publisher_licensing")}}',
-        dataType: 'json',
-        delay: 250,
-        processResults: function (data) {
-            return {
-                results: $.map(data, function(item) {
-                    return {
-                        text: item.name,
-                        id: item.id
-                    }
-                })
-            };
-        },
-        cache: true
-    }
-});
+    $('#company').select2({
+        ajax: {
+            url: '{{route("searching_company")}}',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+    $('#publisher').select2({
+        minimumInputLength: 2,
+        ajax: {
+            url: '{{route("searching_publisher_licensing")}}',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+    $('.endDate').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('.hihow').show();
+        } else {
+            $('.hihow').hide();
+        }
+    });
+
+    $(document).ready(function () {
+        var clone = 0;
+
+        $(".btn-success").click(function () {
+            var lsthmtl = $(".clone").html();
+            // if(clone == 0) {
+            //     $("<div class='hdtuto control-group lst input-group' style='margin-top:10px'><input type='file' name='filenames[]' class='myfrm form-control document_remove'><div class='input-group-btn'><button class='btn btn-danger' style='border-radius: 0px;'><i class='bi bi-dash-lg pt-1'></i></button></div></div>").after(lsthmtl);
+            //     clone++;
+            // }else if(clone >= 1) {
+            //     $(".increment").after(lsthmtl);
+            //     clone++;
+            // }
+            $(".increment").after(lsthmtl);
+            clone++;
+        });
+
+        $("body").on("click", ".btn-danger", function () {
+            $(this).parents(".hdtuto").remove();
+            clone--;
+        });
+    });
+
 </script>
 @endsection

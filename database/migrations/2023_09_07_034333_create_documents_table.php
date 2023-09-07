@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->unsignedBigInteger('division_id');
-            $table->foreign('division_id')->references('id')->on('divisions');
-            $table->string('information')->nullable();
+            $table->unsignedBigInteger('licensing_id');
+            $table->foreign('licensing_id')->references('id')->on('licensings');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('documents');
     }
 };

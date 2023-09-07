@@ -12,7 +12,7 @@ class Licensing extends Model
     protected $table = 'licensings';
 
     protected $fillable = [
-        'legal_entity_id',
+        'company_id',
         'permit_number',
         'permit_name',
         'publisher_id',
@@ -22,7 +22,27 @@ class Licensing extends Model
         'extra_time',
         'documents',
         'description',
-        'user_id'
+        'user_id',
+        'document1',
+        'document2',
+        'document3',
+        'document4',
+        'document5',
+        'document6',
+        'document7',
+        'document8',
+        'document9',
+        'document10',
+        'document11',
+        'document12',
+        'document13',
+        'document14',
+        'document15',
+        'document16',
+        'document17',
+        'document18',
+        'document19',
+        'document20',
     ];
 
     public function users(){

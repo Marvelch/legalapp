@@ -51,34 +51,38 @@ class LicensingController extends Controller
         DB::beginTransaction();
 
         try {
+            // if($request->period) {
+            //     $days = $request->period * 2;
+            //     $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
+            // }
+            // dd($request->document);
 
-            if($request->period) {
-                $days = $request->period * 2;
-                $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
+            foreach($request->document as $item) {
+                dd($request->document);
             }
 
-            if(@$request->file('documents')) {
-                $documents = $request->file('documents')->store('Licensing');
-            }
+            // if(@$request->file('documents')) {
+                // $documents = $request->file('documents')->store('Licensing');
+            // }
 
-            Licensing::create([
-                'legal_entity_id' => $request->legal_entity,
-                'permit_number' => strtolower($request->permit_number),
-                'permit_name' => strtolower($request->permit_name),
-                'publisher_id' => $request->publisher,
-                'date_start' => $request->date_start,
-                'date_end' => $request->date_end,
-                'period' => $request->period,
-                'extra_time' => @$extraTime,
-                'documents' => @$documents,
-                'description' => strtolower($request->description),
-                'user_id' => Auth::user()->id
-            ]);
+            // Licensing::create([
+            //     'legal_entity_id' => $request->legal_entity,
+            //     'permit_number' => strtolower($request->permit_number),
+            //     'permit_name' => strtolower($request->permit_name),
+            //     'publisher_id' => $request->publisher,
+            //     'date_start' => $request->date_start,
+            //     'date_end' => $request->date_end,
+            //     'period' => $request->period,
+            //     'extra_time' => @$extraTime,
+            //     'documents' => @$documents,
+            //     'description' => strtolower($request->description),
+            //     'user_id' => Auth::user()->id
+            // ]);
 
-            DB::commit();
-            Alert::success('SUCCEED','Successfully save data to system');
+            // DB::commit();
+            // Alert::success('SUCCEED','Successfully save data to system');
 
-            return back();
+            // return back();
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollback();
@@ -197,6 +201,20 @@ class LicensingController extends Controller
         $data = [];
 
         $data = LegalEntity::select("name", "id")
+                        ->where('name', 'LIKE', '%'. $request->get('q'). '%')
+                        ->get();
+
+        return response()->json($data);
+    }
+
+    /**
+     * Company data search for autocomplate.
+     */
+    public function SearchingCompany(Request $request)
+    {
+        $data = [];
+
+        $data = Company::select("name", "id")
                         ->where('name', 'LIKE', '%'. $request->get('q'). '%')
                         ->get();
 

@@ -27,7 +27,7 @@
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body my-3">
+                <div class="card-body my-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-8">
                             <div class="form-group ml-5">

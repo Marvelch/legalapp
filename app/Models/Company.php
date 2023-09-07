@@ -14,7 +14,8 @@ class Company extends Model
     protected $fillable = [
         'name',
         'address',
-        'division_id'
+        'division_id',
+        'information'
     ];
 
     public function divisions() {
