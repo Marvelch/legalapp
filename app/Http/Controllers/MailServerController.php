@@ -159,6 +159,31 @@ class MailServerController extends Controller
         //     ]);
         // }
 
+        // foreach($items as $item) {
+        //     $body = [
+        //         'nama_pengguna' => $item->users->name,
+        //         'no_perizinan' => $item->permit_number,
+        //         'nama_perizinan' => $item->permit_name,
+        //         'tanggal' => $item->add_date,
+        //     ];
+
+        //     $json = json_encode($body);
+
+        //     $response = Http::get('http://10.10.30.14:8888/wa/perizinan', $json);
+        //     echo $response;
+        // }
+
+        // foreach($items_agg as $item) {
+
+        //     Http::accept('application/json')->get('http://10.10.30.14:8888/wa/perizinan', [
+        //         'nama_pengguna' => $item->users->name,
+        //         'no_perizinan' => $item->counter_party_name,
+        //         'nama_perizinan' => $item->agreement_name,
+        //         'telepon' => '6282217797018',
+        //         'tanggal' => $item->add_date,
+        //     ]);
+        // }
+
         // echo "Bulk mail send successfully in the background...";
     }
 
