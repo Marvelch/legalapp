@@ -106,7 +106,7 @@
                                                     </td>
                                                     <td class="d-flex justify-content-center">
                                                         <div class="form-check form-switch">
-                                                            <input class="form-check-input endDate" name="endDate"
+                                                            <input class="form-check-input check_date_period" name="check_date_period"
                                                                 type="checkbox" id="flexSwitchCheckDefault"
                                                                 style="width: 35px; height: 20px;">
                                                         </div>
@@ -134,7 +134,7 @@
                                                 <input name="period" type="text" class="form-control"
                                                     style="height: 30px;">
                                                 <span class="input-group-text" id="basic-addon2"
-                                                    style="height: 30px; border-radius: 0px;">Hari</span>
+                                                    style="height: 30px; border-radius: 0px;">hari</span>
                                             </div>
                                             @error('period')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>
@@ -143,27 +143,17 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <!-- <div class="mb-4">
-                                        <label class="mb-2" style="margin-left: 3px;">Dokumen</label>
-                                        <div class="input-group mb-3" id="document1">
-                                            <input type="file" name="document[]" class="form-control form-control-sm"
-                                                id="document">
-                                            <label type="button" class="input-group-text btn-add-more" style="cursor: pointer;"><i
-                                                    class="bi bi-plus-circle"></i></label>
-                                        </div>
-                                    </div> -->
-                                    <div class="input-group hdtuto control-group lst increment">
-                                        <input type="file" name="document[]" class="myfrm form-control form-control-sm">
+                                    <div class="input-group mt-4 hdtuto control-group lst increment">
+                                        <input type="file" name="documents[]" class="myfrm form-control form-control-sm">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-success btn-sm" type="button" style="border-radius: 0px;"><i class="bi bi-plus-circle pt-1"></i></button>
+                                            <button class="btn btn-success btn-sm" type="button" style="border-radius: 0px 2px 2px 0px;"><i class="bi bi-plus-circle pt-1"></i></button>
                                         </div>
                                     </div>
                                     <div class="clone hide">
                                         <div class="hdtuto control-group lst input-group" style="margin-top:10px">
-                                            <input type="file" name="document[]" class="myfrm form-control form-control-sm">
+                                            <input type="file" name="documents[]" class="myfrm form-control form-control-sm">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-danger btn-sm" type="button" style="border-radius: 0px;"><i
-                                                        class="bi bi-dash-lg"></i></button>
+                                                <button class="btn btn-danger btn-sm" type="button" style="border-radius: 0px 2px 2px 0px;"><i class="bi bi-dash-circle"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +203,6 @@
     });
 
     $('#publisher').select2({
-        minimumInputLength: 2,
         ajax: {
             url: '{{route("searching_publisher_licensing")}}',
             dataType: 'json',
@@ -232,7 +221,7 @@
         }
     });
 
-    $('.endDate').on('change', function () {
+    $('.check_date_period').on('change', function () {
         if ($(this).is(':checked')) {
             $('.hihow').show();
         } else {

@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('document_agreements', function (Blueprint $table) {
             $table->id();
             $table->string('key');
-            $table->foreign('key')->references('document_keys')->on('licensings');
+            $table->foreign('key')->references('document_keys')->on('agreements');
             $table->string('file_name');
             $table->string('path');
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('document_agreements');
     }
 };

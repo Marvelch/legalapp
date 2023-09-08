@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Alert;
+use App\Models\document;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -48,41 +49,50 @@ class LicensingController extends Controller
             'description'   => 'max: 500'
         ]);
 
+        $unique = generateUniqueCode();
+
         DB::beginTransaction();
 
         try {
-            // if($request->period) {
-            //     $days = $request->period * 2;
-            //     $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
-            // }
-            // dd($request->document);
+                if($request->check_date_period AND $request->period AND $request->date_end) {
+                    $days = $request->period * 2;
+                    $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
+                }
 
-            foreach($request->document as $item) {
-                dd($request->document);
+                Licensing::create([
+                    'company_id' => $request->company,
+                    'permit_number' => strtolower($request->permit_number),
+                    'permit_name' => strtolower($request->permit_name),
+                    'publisher_id' => $request->publisher,
+                    'date_start' => $request->date_start,
+                    'date_end' => $request->check_date_period && $request->period ? $request->date_end : null,
+                    'check_date_period' => $request->check_date_period && $request->period ? 1 : 0,
+                    'period' => $request->check_date_period && $request->period ? $request->period : null,
+                    'add_date' => $request->check_date_period && $request->date_end && $request->period ? $extraTime : null,
+                    'set_notification' => $request->check_date_period && $request->date_end && $request->period ? @$extraTime : null,
+                    'description' => strtolower($request->description),
+                    'user_id' => Auth::user()->id,
+                    'document_keys' => $unique
+                ]);
+
+                if($request->documents) {
+                    foreach($request->documents as $key => $item) {
+                    if(@$item) {
+                        $documents = $item->store('Licensing');
+                    }
+
+                    document::create([
+                        'file_name' => $item->getClientOriginalName(),
+                        'key' => $unique,
+                        'path' => @$documents,
+                    ]);
+                }
             }
 
-            // if(@$request->file('documents')) {
-                // $documents = $request->file('documents')->store('Licensing');
-            // }
+            DB::commit();
+            Alert::success('SUCCEED','Successfully save data to system');
 
-            // Licensing::create([
-            //     'legal_entity_id' => $request->legal_entity,
-            //     'permit_number' => strtolower($request->permit_number),
-            //     'permit_name' => strtolower($request->permit_name),
-            //     'publisher_id' => $request->publisher,
-            //     'date_start' => $request->date_start,
-            //     'date_end' => $request->date_end,
-            //     'period' => $request->period,
-            //     'extra_time' => @$extraTime,
-            //     'documents' => @$documents,
-            //     'description' => strtolower($request->description),
-            //     'user_id' => Auth::user()->id
-            // ]);
-
-            // DB::commit();
-            // Alert::success('SUCCEED','Successfully save data to system');
-
-            // return back();
+            return back();
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollback();
@@ -90,7 +100,7 @@ class LicensingController extends Controller
             // Alert::error('FAIL','Failed to save because we ran into a problem');
             // return back();
 
-            return $th->getMessage();
+            return $th;
         }
     }
 
@@ -130,31 +140,42 @@ class LicensingController extends Controller
         DB::beginTransaction();
 
         try {
+            $key = Licensing::select('document_keys')->find($id);
 
-            if($request->period) {
+            if($request->check_date_period AND $request->period AND $request->date_end) {
                 $days = $request->period * 2;
                 $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
             }
 
-            if(@$request->file('documents')) {
-                $documents = $request->file('documents')->store('Licensing');
-            }else{
-                $licensing = Licensing::find($id);
-                $documents = $licensing->documents;
-            }
+            $parent = Licensing::find($id);
 
-            Licensing::find($id)->update([
-                'legal_entity_id' => $request->legal_entity,
+            $parent->update([
+                'company_id' => $request->company,
                 'permit_number' => strtolower($request->permit_number),
                 'permit_name' => strtolower($request->permit_name),
                 'publisher_id' => $request->publisher,
                 'date_start' => $request->date_start,
-                'date_end' => $request->date_end,
-                'period' => $request->period,
-                'extra_time' => @$extraTime,
-                'documents' => @$documents,
+                'date_end' => $request->check_date_period && $request->period ? $request->date_end : null,
+                'check_date_period' => $request->check_date_period && $request->period ? 1 : 0,
+                'period' => $request->check_date_period && $request->period ? $request->period : null,
+                'add_date' => $request->check_date_period && $request->date_end && $request->period ? $extraTime : null,
+                'set_notification' => $request->check_date_period && $request->date_end && $request->period ? @$extraTime : null,
                 'description' => strtolower($request->description)
             ]);
+
+            if($request->documents) {
+                foreach($request->documents as $key => $item) {
+                    if(@$item) {
+                        $documents = $item->store('Licensing');
+                    }
+
+                    $parent->documents()->create([
+                        'file_name' => $item->getClientOriginalName(),
+                        'key' => $key,
+                        'path' => @$documents,
+                    ]);
+                }
+            }
 
             DB::commit();
             Alert::success('SUCCEED','Successfully save data to system');
@@ -167,7 +188,7 @@ class LicensingController extends Controller
             // Alert::error('FAIL','Failed to save because we ran into a problem');
             // return back();
 
-            return $th->getMessage();
+            return $th;
         }
     }
 
@@ -180,7 +201,7 @@ class LicensingController extends Controller
 
         try {
             Licensing::find($id)->delete();
-            
+
             DB::commit();
             Alert::success('SUCCEED','Data deletion has been successful');
 
@@ -278,7 +299,7 @@ class LicensingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function download($id) 
+    public function download($id)
     {
         return Storage::download(Crypt::decryptString($id));
     }

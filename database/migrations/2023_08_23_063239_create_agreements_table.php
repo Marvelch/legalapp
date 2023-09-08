@@ -19,13 +19,16 @@ return new class extends Migration
             $table->string('counter_party_name');
             $table->date('signing_date');
             $table->date('effective_date');
-            $table->date('end_date');
-            $table->integer('renewal_date')->nullable();
-            $table->date('date_notification')->nullable();
-            $table->string('documents')->nullable();
+            $table->tinyInteger('check_date_period');
+            $table->date('date_end')->nullable();
+            $table->integer('period')->nullable();
+            $table->date('add_date')->nullable();
+            $table->date('set_notification')->nullable();
+            $table->String('document_keys')->index()->nullable();
             $table->string('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

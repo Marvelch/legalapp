@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class document extends Model
+class documentAgreement extends Model
 {
     use HasFactory;
 
-    protected $table = 'documents';
+    protected $table = 'document_agreements';
 
     protected $fillable = [
         'key',
