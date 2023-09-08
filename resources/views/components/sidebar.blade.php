@@ -16,7 +16,7 @@
                     <a href="{{url('/home')}}" class="pc-link"><span class="pc-micon"><i
                                 class="ti ti-dashboard"></i></span><span class="pc-mtext">Dashboard</span></a>
                 </li>
-                <li class="pc-item pc-hasmenu">
+                <!-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-book"></i></span><span
                             class="pc-mtext">Badan Hukum</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
@@ -24,7 +24,7 @@
                         <li class="pc-item"><a class="pc-link" href="{{route('index_legal')}}">Data</a></li>
                         <li class="pc-item"><a class="pc-link" href="{{route('create_legal')}}">Buat Baru</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-key"></i></span><span
                             class="pc-mtext">Penerbit</span><span class="pc-arrow"><i

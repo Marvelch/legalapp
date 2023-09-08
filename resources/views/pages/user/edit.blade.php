@@ -56,6 +56,16 @@
                                             @enderror
                                     </div>
                                 </div>
+                                 <div class="form-group">
+                                    <div class="mb-4">
+                                        <label class="mb-2" style="margin-left: 3px;">Telpon</label>
+                                        <input type="text" name="phone" class="form-control form-control-sm"
+                                            value="{{@$users->phone}}" required>
+                                        @error('phone')
+                                        <p class="text-sm text-danger">*{{ $message }}</p]>
+                                            @enderror
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Kata Sandi</label>
@@ -70,7 +80,7 @@
                                     <div class="mb-4">
                                         <label class="mb-2" style="margin-left: 3px;">Level</label>
                                         <select name="type" id="publisher"
-                                            class="form-control form-control-sm text-capitalize" 
+                                            class="form-control form-control-sm text-capitalize"
                                             style="width: 100%;" required>
                                             <option value="0" {{$users->type == 'user' ? 'selected' : ''}}>Users (Pengguna)</option>
                                             <option value="1" {{$users->type == 'manager' ? 'selected' : ''}}>Manager</option>

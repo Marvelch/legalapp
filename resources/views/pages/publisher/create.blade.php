@@ -29,11 +29,10 @@
             <div class="card">
                 <div class="card-body my-4">
                     <div class="row d-flex justify-content-center">
-                         <div class="col-md-8">
-                            <h2>Lembaga Penerbit</h2>
-                            <p class="text-muted" style="font-size: 11px;">Pastikan penginputan lembaga penerbit sudah sesuai field terlampir</p>
-                        </div>
                         <div class="col-md-8 mt-3">
+                            <h3><i class="bi bi-bookmark-check-fill text-success"></i> <span class="h5 text-uppercase">Penerbit Baru</span></h3>
+                            <p class="sub_title text-muted ml-1">Perhatikan penginputan setiap kolom untuk menghindari kesalahan pada sistem.</p>
+                            <hr class="sub_hr">
                             <form action="{{route('store_publisher')}}" method="post">
                                 @csrf
                                 <div class="form-group">
@@ -72,7 +71,7 @@
                                 </div>
                                 <div class="form-group d-flex justify-content-end">
                                     <div class="mb-4 mt-4">
-                                        <button class="btn btn-primary text-sm" type="submit">Simpan</button>
+                                        <button class="btn btn-primary btn-flat text-sm" type="submit" style="border-radius: 0px;">Simpan</button>
                                     </div>
                                 </div>
                             </form>

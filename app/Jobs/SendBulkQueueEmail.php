@@ -35,7 +35,7 @@ class SendBulkQueueEmail implements ShouldQueue
     public function handle(): void
     {
 
-        $ccEmails = ["it@bumipanganutama.com", "it@sekarbumi.com"];
+        $ccEmails = ["bed@bumipanganutama.com", "mr.marvel.christevan@gmail.com"];
 
         foreach($this->items_agg as $item) {
             $sendMail = new SendEmailAgreement($item);

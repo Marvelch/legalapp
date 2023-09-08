@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use DB;
 use Alert;
 use App\Models\Company;
+use App\Models\document;
+use App\Models\documentAgreement;
 use Carbon\Carbon;
 use Yajra\DataTables\Facades\DataTables;
 use File;
@@ -46,17 +48,15 @@ class AgreementController extends Controller
             'effective_date' => 'required',
         ]);
 
+        $unique = generateUniqueCode();
+
         DB::beginTransaction();
 
         try {
 
-             if($request->renewal_date) {
-                $days = $request->renewal_date * 2;
-                $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->end_date)));
-            }
-
-            if(@$request->file('documents')) {
-                $documents = $request->file('documents')->store('Agreements');
+            if($request->check_date_period AND $request->period AND $request->date_end) {
+                $days = $request->period * 2;
+                $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
             }
 
             Agreement::create([
@@ -65,13 +65,29 @@ class AgreementController extends Controller
                 'counter_party_name' => $request->counter_party_name,
                 'signing_date' => $request->signing_date,
                 'effective_date' => $request->effective_date,
-                'end_date' => $request->end_date,
-                'renewal_date' => $request->renewal_date,
-                'date_notification' => @$extraTime,
-                'documents' => @$documents,
-                'description' => $request->description,
-                'user_id' => Auth::user()->id
+                'date_end' => $request->check_date_period && $request->period ? $request->date_end : null,
+                'check_date_period' => $request->check_date_period && $request->period ? 1 : 0,
+                'period' => $request->check_date_period && $request->period ? $request->period : null,
+                'add_date' => $request->check_date_period && $request->date_end && $request->period ? $extraTime : null,
+                'set_notification' => $request->check_date_period && $request->date_end && $request->period ? @$extraTime : null,
+                'description' => strtolower($request->description),
+                'user_id' => Auth::user()->id,
+                'document_keys' => $unique
             ]);
+
+            if($request->documents) {
+                foreach($request->documents as $key => $item) {
+                    if(@$item) {
+                        $documents = $item->store('Agreement');
+                    }
+
+                    documentAgreement::create([
+                        'file_name' => $item->getClientOriginalName(),
+                        'key' => $unique,
+                        'path' => @$documents,
+                    ]);
+                }
+            }
 
             DB::commit();
 
@@ -85,7 +101,7 @@ class AgreementController extends Controller
             // Alert::error('FAIL','Failed to save because we ran into a problem');
             // return back();
 
-            return $th->getMessage();
+            return $th;
         }
     }
 
@@ -139,33 +155,42 @@ class AgreementController extends Controller
         DB::beginTransaction();
 
         try {
-            $agreements = Agreement::find($id)->first();
+            $key = Agreement::select('document_keys')->find($id);
 
-            if($request->renewal_date) {
-                $days = $request->renewal_date * 2;
-                $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->end_date)));
+            if($request->check_date_period AND $request->period AND $request->date_end) {
+                $days = $request->period * 2;
+                $extraTime = date('Y-m-d', strtotime(-$days.'days', strtotime($request->date_end)));
             }
 
-            if(@$request->file('documents')) {
-                Storage::delete($agreements->documents);
-                $documents = $request->file('documents')->store('Agreements');
-            }else{
-                $agreement = Agreement::find($id);
-                $documents = $agreement->documents;
-            }
+            $parent = Agreement::find($id);
 
-            Agreement::find($id)->update([
+            $parent->update([
                 'agreement_name' => $request->agreement_name,
                 'company_id' => $request->company,
                 'counter_party_name' => $request->counter_party_name,
                 'signing_date' => $request->signing_date,
                 'effective_date' => $request->effective_date,
-                'end_date' => $request->end_date,
-                'renewal_date' => $request->renewal_date,
-                'date_notification' => @$extraTime,
-                'documents' => @$documents,
-                'description' => $request->description
+                'check_date_period' => $request->check_date_period && $request->period ? 1 : 0,
+                'date_end' => $request->check_date_period && $request->period ? $request->date_end : null,
+                'period' => $request->check_date_period && $request->period ? $request->period : null,
+                'add_date' => $request->check_date_period && $request->date_end && $request->period ? $extraTime : null,
+                'set_notification' => $request->check_date_period && $request->date_end && $request->period ? @$extraTime : null,
+                'description' => strtolower($request->description)
             ]);
+
+            if($request->documents) {
+                foreach($request->documents as $key => $item) {
+                    if(@$item) {
+                        $documents = $item->store('Licensing');
+                    }
+
+                    $parent->documentAgreements()->create([
+                        'file_name' => $item->getClientOriginalName(),
+                        'key' => $key,
+                        'path' => @$documents,
+                    ]);
+                }
+            }
 
             DB::commit();
 
@@ -194,7 +219,7 @@ class AgreementController extends Controller
             Storage::delete($agreements->documents);
 
             Agreement::find($id)->delete();
-            
+
             DB::commit();
             Alert::success('SUCCEED','Data deletion has been successful');
 
@@ -255,7 +280,7 @@ class AgreementController extends Controller
     /**
      * Download file
      */
-    public function download($id) 
+    public function download($id)
     {
         return Storage::download(Crypt::decryptString($id));
     }

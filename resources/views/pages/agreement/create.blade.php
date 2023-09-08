@@ -29,11 +29,12 @@
             <div class="card">
                 <div class="card-body my-5">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-8">
-                            <h2>Buat Perjanjian</h2>
-                            <p class="text-muted" style="font-size: 11px;">Pastikan penginputan perjanjian sudah sesuai field terlampir</p>
-                        </div>
                         <div class="col-md-8 my-3">
+                            <h3><i class="bi bi-send-plus text-success"></i> <span
+                                    class="h5 text-uppercase">Buat Perjanjian</span></h3>
+                            <p class="sub_title text-muted ml-1">Penghatikan penginputan setiap kolom untuk menghindari
+                                kesalahan pada sistem.</p>
+                            <hr class="sub_hr">
                             <form action="{{route('store_agreement')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -49,7 +50,7 @@
                                 <div class="form-group">
                                     <div class="mb-4">
                                         <label class="mb-2">Perusahaan</label>
-                                        <select name="company" class="company_entity" id="company_entity"
+                                        <select name="company" class="company" id="company"
                                             class="form-control form-control-sm" name="state"
                                             style="width: 100%; text-transform:uppercase;" required>
                                         </select>
@@ -88,41 +89,68 @@
                                             @enderror
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group pt-2">
                                     <div class="mb-4">
-                                        <label class="mb-2">Tanggal Berakhir</label>
-                                        <input name="end_date" type="date" name="end_date" class="form-control form-control-sm"
-                                            value="{{ now()->format('Y-m-d') }}" required>
-                                        @error('end_date')
+                                        <table class="table table-bordered text-sm" style="border-radius: 10px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-6 text-sm text-center"><i
+                                                            class="bi bi-calendar-date"
+                                                            style="font-size: 15px; margin-right: 10px;"></i> <span
+                                                            style="margin-left: 20xp;">Pilih Tanggal Berakhir</span>
+                                                    </td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input check_date_period" name="check_date_period"
+                                                                type="checkbox" id="flexSwitchCheckDefault"
+                                                                style="width: 35px; height: 20px;">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="hihow">
+                                    <div class="form-group">
+                                        <div class="mb-4">
+                                            <label class="mb-2" style="margin-left: 3px;">Tanggal Berakhir</label>
+                                            <input type="date" name="date_end" class="form-control form-control-sm"
+                                                value="{{ now()->format('Y-m-d') }}" required>
+                                            @error('date_end')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>
-                                        @enderror
+                                                @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="mb-4">
+                                            <label class="mb-2" style="margin-left: 3px;">Periode Perpanjangan</label>
+                                            <div class="input-group mb-3">
+                                                <input name="period" type="text" class="form-control"
+                                                    style="height: 30px;">
+                                                <span class="input-group-text" id="basic-addon2"
+                                                    style="height: 30px; border-radius: 0px;">hari</span>
+                                            </div>
+                                            @error('period')
+                                            <p class="text-sm text-danger">*{{ $message }}</p]>
+                                                @enderror
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="mb-4">
-                                        <label for="">Pembaharuan</label>
-                                        <div class="form-check form-switch mt-1">
-                                            <input class="form-check-input p-1" type="checkbox" id="renewalCheck"
-                                                style="width: 2.3rem; height: 17px;">
+                                 <div class="form-group">
+                                    <div class="input-group mt-4 hdtuto control-group lst increment">
+                                        <input type="file" name="documents[]" class="myfrm form-control form-control-sm">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success btn-sm" type="button" style="border-radius: 0px 2px 2px 0px;"><i class="bi bi-plus-circle pt-1"></i></button>
                                         </div>
-                                        <div class="input-group mb-3 mt-3" id="renewalGroup">
-                                            <input name="renewal_date" type="text" id="dateRenewal"
-                                                class="form-control form-control-sm" style="height: 30px;">
-                                            <span class="input-group-text" style="height: 32px; border-radius: 0px;">Hari</span>
-                                        </div>
-                                        @error('renewal_date')
-                                        <p class="text-sm text-danger">*{{ $message }}</p]>
-                                            @enderror
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="mb-4">
-                                        <label class="mb-2">Dokumen Pelengkap</label>
-                                        <input type="file" name="documents" class="form-control form-control-sm"
-                                            value="{{old('documents')}}">
-                                        @error('documents')
-                                        <p class="text-sm text-danger">*{{ $message }}</p]>
-                                            @enderror
+                                    <div class="clone hide">
+                                        <div class="hdtuto control-group lst input-group" style="margin-top:10px">
+                                            <input type="file" name="documents[]" class="myfrm form-control form-control-sm">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger btn-sm" type="button" style="border-radius: 0px 2px 2px 0px;"><i class="bi bi-dash-circle"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -132,8 +160,9 @@
                                             class="form-control form-control-sm"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group my-5 d-flex justify-content-end">
-                                    <button class="btn btn-primary text-sm" type="submit">Simpan</button>
+                                <div class="form-group d-flex justify-content-end my-4">
+                                    <button class="btn btn-primary btn-flat text-sm" type="submit"
+                                        style="border-radius: 0px;">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -146,19 +175,18 @@
     <!-- [ Main Content ] end -->
 </div>
 <script>
-    $('#renewalGroup').hide();
+    $('.hide').hide();
+    $('.hihow').hide();
 
-    $('#renewalCheck').on('change', function () {
-        const x = $('#renewalCheck').is(':checked');
-        if (x == true) {
-            $('#renewalGroup').show();
+    $('.check_date_period').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('.hihow').show();
         } else {
-            $('#renewalGroup').hide();
+            $('.hihow').hide();
         }
     });
 
-    $('#company_entity').select2({
-        minimumInputLength: 2,
+    $('#company').select2({
         ajax: {
             url: '{{route("searching_company")}}',
             dataType: 'json',
@@ -178,7 +206,6 @@
     });
 
     $('#publisher').select2({
-        minimumInputLength: 2,
         ajax: {
             url: '{{route("searching_publisher_licensing")}}',
             dataType: 'json',
@@ -195,6 +222,17 @@
             },
             cache: true
         }
+    });
+
+    $(document).ready(function () {
+        $(".btn-success").click(function () {
+            var lsthmtl = $(".clone").html();
+            $(".increment").after(lsthmtl);
+        });
+
+        $("body").on("click", ".btn-danger", function () {
+            $(this).parents(".hdtuto").remove();
+        });
     });
 
 </script>

@@ -53,7 +53,7 @@ class PublisherController extends Controller
             DB::commit();
             Alert::success('SUCCEED','Successfully save data to system');
 
-            return back();
+            return redirect()->route('index_publisher');
         } catch (\Throwable $th) {
             //throw $th;
             DB::rollback();

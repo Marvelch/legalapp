@@ -6,15 +6,15 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Company</h5>
-                    </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{url('/home')}}">Home</a>
+                            <a href="{{url('/home')}}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{url('/show_company')}}">Utama</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Create
+                            Buat Baru
                         </li>
                     </ul>
                 </div>
@@ -30,12 +30,18 @@
                 <div class="card-body my-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-8">
+                            <h3><i class="bi bi-bookmark-check-fill text-success"></i> <span class="h5 text-uppercase">Perusahaan Baru</span></h3>
+                            <p class="sub_title text-muted ml-1">Penghatikan penginputan setiap kolom untuk menghindari kesalahan pada sistem.</p>
+                            <hr class="sub_hr">
                             <form action="{{route('store_company')}}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2" style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Nama Perusahaan</label>
-                                        <input type="text" name="name" class="form-control form-control-sm" value="{{old('name')}}">
+                                        <label class="mb-2"
+                                            style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Nama
+                                            Perusahaan</label>
+                                        <input type="text" name="name" class="form-control form-control-sm"
+                                            value="{{old('name')}}" required>
                                         @error('name')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -45,28 +51,40 @@
                                     <div class="mb-4">
                                         <label class="mb-2"
                                             style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Alamat</label>
-                                        <input type="text" name="address" class="form-control form-control-sm" value="{{old('address')}}">
-                                         @error('address')
+                                        <input type="text" name="address" class="form-control form-control-sm"
+                                            value="{{old('address')}}" required>
+                                        @error('address')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
-                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2" style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Divisi
+                                        <label class="mb-2"
+                                            style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Divisi
                                             Perusahaan</label>
                                         <select name="division" class="form-select form-select-sm"
-                                            aria-label=".form-select-sm example">
+                                            aria-label=".form-select-sm example" required>
                                             @foreach($items as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group content-justify-end">
+                                <div class="form-group">
                                     <div class="mb-4">
-                                        <button class="btn btn-primary text-sm" type="submit">Simpan</button>
+                                        <label class="mb-2"
+                                            style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Keterangan</label>
+                                        <textarea name="information" id="" cols="30" rows="4"
+                                            class="form-control"></textarea>
                                     </div>
+                                    @error('information')
+                                    <p class="text-sm text-danger">*{{ $message }}</p]>
+                                        @enderror
+                                </div>
+                                <div class="form-group d-flex justify-content-end mt-2">
+                                    <button class="btn btn-primary btn-flat text-sm" type="submit"
+                                        style="border-radius: 0px;">Simpan</button>
                                 </div>
                             </form>
                         </div>

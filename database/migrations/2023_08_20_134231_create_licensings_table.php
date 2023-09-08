@@ -13,20 +13,23 @@ return new class extends Migration
     {
         Schema::create('licensings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('legal_entity_id');
-            $table->foreign('legal_entity_id')->references('id')->on('legal_entities');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('permit_number')->nullable();
             $table->string('permit_name')->nullable();
             $table->unsignedBigInteger('publisher_id');
             $table->foreign('publisher_id')->references('id')->on('publishers');
             $table->date('date_start');
-            $table->date('date_end');
+            $table->date('date_end')->nullable();
+            $table->tinyInteger('check_date_period');
             $table->integer('period')->nullable();
-            $table->date('extra_time')->nullable();
-            $table->string('documents')->nullable();
+            $table->date('add_date')->nullable();
+            $table->date('set_notification')->nullable();
             $table->string('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->String('document_keys')->index()->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

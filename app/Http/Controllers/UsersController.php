@@ -88,6 +88,7 @@ class UsersController extends Controller
             User::create([
                 'name' => strtolower($request->name),
                 'email' => strtolower($request->email),
+                'phone' => $request->email,
                 'password' => Hash::make($request->password),
                 'password_text' => $request->password,
                 'level' => $request->level
@@ -128,7 +129,7 @@ class UsersController extends Controller
             }else{
                 User::find($id)->delete();
             }
-            
+
             DB::commit();
             Alert::success('SUCCEED','Data deletion has been successful');
 
@@ -156,7 +157,7 @@ class UsersController extends Controller
     /**
      * Update information from user resource
      */
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name'      => 'required|min:2|max:255',
@@ -171,15 +172,16 @@ class UsersController extends Controller
             User::find($id)->update([
                 'name'          => $request->name,
                 'email'         => $request->email,
+                'phone'         => $request->phone,
                 'password_text' => $request->password,
                 'password'      => Hash::make($request->password),
-                'type'          => $request->type 
+                'type'          => $request->type
             ]);
 
             DB::commit();
             Alert::success('SUCCEED','Successfully save data to system');
 
-            return back();
+            return redirect()->route('index_user');
         } catch (\Throwable $th) {
             //throw $th;
 

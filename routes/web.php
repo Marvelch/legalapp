@@ -104,6 +104,7 @@ Route::group(['prefix' => 'licensing','middleware' => ['auth']], function(){
     Route::get('/delete/{id}',[LicensingController::class,'destroy'])->name('destroy_licensing');
 
     Route::get('/search',[LicensingController::class,'searching'])->name('searching_licensing');
+    Route::get('/search-company',[LicensingController::class,'SearchingCompany'])->name('searching_company');
     Route::get('/search-publisher',[LicensingController::class,'SearchingPublisher'])->name('searching_publisher_licensing');
 });
 
@@ -119,7 +120,7 @@ Route::group(['prefix' => 'agreement','middleware' => ['auth']], function(){
     Route::get('/agreement-data',[AgreementController::class,'agreementTable'])->name('table_agreement');
     Route::get('/delete/{id}',[AgreementController::class,'destroy'])->name('destroy_agreement');
 
-    Route::get('/search-company',[AgreementController::class,'searchingCompany'])->name('searching_company');
+    // Route::get('/search-company',[AgreementController::class,'searchingCompany'])->name('searching_company');
 });
 
 Route::post('/logout', function() {

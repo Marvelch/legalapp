@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendBulkQueueEmail;
 use App\Models\MailServer;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Mail;
 use DB;
@@ -117,19 +118,73 @@ class MailServerController extends Controller
     {
         date_default_timezone_set('Asia/Jakarta');
 
-        $items = Licensing::where('extra_time',date('Y-m-d',strtotime(now())))->get();
+        // Blast Email
 
-        $items_agg = Agreement::where('date_notification',date('Y-m-d',strtotime(now())))->get();
+        $items = Licensing::where('set_notification',date('Y-m-d',strtotime(now())))->get();
+
+        $items_agg = Agreement::where('set_notification',date('Y-m-d',strtotime(now())))->get();
 
         $job = (new SendBulkQueueEmail($items,$items_agg))
             ->delay(
             	now()
             	->addSeconds(2)
-            ); 
+            );
 
         dispatch($job);
 
-        echo "Bulk mail send successfully in the background...";
+        // Blast Whatsapp
+
+        // foreach($items as $item) {
+        //     $body = [
+        //         'nama_pengguna' => $item->users->name,
+        //         'no_perizinan' => $item->permit_number,
+        //         'nama_perizinan' => $item->permit_name,
+        //         'tanggal' => $item->add_date,
+        //     ];
+
+        //     $json = json_encode($body);
+
+        //     $response = Http::get('http://10.10.30.14:8888/wa/perizinan', $json);
+        //     echo $response;
+        // }
+
+        // foreach($items_agg as $item) {
+
+        //     Http::accept('application/json')->get('http://10.10.30.14:8888/wa/perizinan', [
+        //         'nama_pengguna' => $item->users->name,
+        //         'no_perizinan' => $item->counter_party_name,
+        //         'nama_perizinan' => $item->agreement_name,
+        //         'telepon' => '6282217797018',
+        //         'tanggal' => $item->add_date,
+        //     ]);
+        // }
+
+        // foreach($items as $item) {
+        //     $body = [
+        //         'nama_pengguna' => $item->users->name,
+        //         'no_perizinan' => $item->permit_number,
+        //         'nama_perizinan' => $item->permit_name,
+        //         'tanggal' => $item->add_date,
+        //     ];
+
+        //     $json = json_encode($body);
+
+        //     $response = Http::get('http://10.10.30.14:8888/wa/perizinan', $json);
+        //     echo $response;
+        // }
+
+        // foreach($items_agg as $item) {
+
+        //     Http::accept('application/json')->get('http://10.10.30.14:8888/wa/perizinan', [
+        //         'nama_pengguna' => $item->users->name,
+        //         'no_perizinan' => $item->counter_party_name,
+        //         'nama_perizinan' => $item->agreement_name,
+        //         'telepon' => '6282217797018',
+        //         'tanggal' => $item->add_date,
+        //     ]);
+        // }
+
+        // echo "Bulk mail send successfully in the background...";
     }
 
     /**
@@ -179,18 +234,18 @@ class MailServerController extends Controller
             return $btn;
         })
         ->addColumn('defaultChange',function($model) {
-            $checkBox = '<div class="d-flex justify-content-center"><div class="form-check form-switch"><input class="form-check-input" 
+            $checkBox = '<div class="d-flex justify-content-center"><div class="form-check form-switch"><input class="form-check-input"
             '.($model->default != NULL ? 'checked' : '').'
             type="checkbox" style="width: 30px; height: 15px" role="switch" id="checkBox'.$model->id.'"></div></div>
-            <script> 
-                $("#checkBox'.$model->id.'").on("change",function(){ 
+            <script>
+                $("#checkBox'.$model->id.'").on("change",function(){
 
                     $.ajax({
                         type: "GET",
                         url: "/mail/update-mail-default/'.$model->id.'",
                         data: {
-                            _token: "{{ csrf_token() }}", 
-                            checked: true 
+                            _token: "{{ csrf_token() }}",
+                            checked: true
                         },
                         success: function(response, status, xhr) {
                             // Check status code
@@ -227,7 +282,7 @@ class MailServerController extends Controller
             MailServer::find($id)->update([
                 'default' => 1,
             ]);
-            
+
             return response()->json(['redirect_url' => '/mail'], 200);
         } else {
             // Checkbox is not checked
