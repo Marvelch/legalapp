@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Mail\SendEmailAgreement;
 use App\Mail\SendMail;
 use App\Models\Agreement;
-use App\Models\Licensing;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -24,10 +23,10 @@ class SendBulkQueueEmail implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct($items, $items_agg)
     {
-        // $this->items = $items;
-        // $this->items_agg = $items_agg;
+        $this->items = $items;
+        $this->items_agg = $items_agg;
     }
 
     /**
@@ -35,20 +34,15 @@ class SendBulkQueueEmail implements ShouldQueue
      */
     public function handle(): void
     {
-        date_default_timezone_set('Asia/Jakarta');
-
-        $items = Licensing::where('set_notification',date('Y-m-d',strtotime(now())))->get();
-
-        $items_agg = Agreement::where('set_notification',date('Y-m-d',strtotime(now())))->get();
 
         $ccEmails = ["bed@bumipanganutama.com", "mr.marvel.christevan@gmail.com"];
 
-        foreach($items_agg as $item) {
+        foreach($this->items_agg as $item) {
             $sendMail = new SendEmailAgreement($item);
             Mail::to($item->users->email)->cc($ccEmails)->send($sendMail);
         }
 
-        foreach($items as $item) {
+        foreach($this->items as $item) {
             $sendMail = new SendMail($item);
             Mail::to($item->users->email)->cc($ccEmails)->send($sendMail);
         }
