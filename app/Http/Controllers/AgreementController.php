@@ -268,8 +268,8 @@ class AgreementController extends Controller
                         ';
             return $btn;
         })
-        ->editColumn('end_date', function($model){
-            $formatDate = date('d-m-Y',strtotime($model->end_date));
+        ->editColumn('date_end', function($model){
+            $formatDate = date('d-m-Y',strtotime($model->date_end));
             return $formatDate;
         })
         ->addColumn('company','{{$model->companys->name}}')
