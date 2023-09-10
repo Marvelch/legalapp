@@ -116,21 +116,21 @@ class MailServerController extends Controller
      */
     public function sendMail(MailServer $mailServer)
     {
-        date_default_timezone_set('Asia/Jakarta');
+        // date_default_timezone_set('Asia/Jakarta');
 
         // Blast Email
 
-        $items = Licensing::where('set_notification',date('Y-m-d',strtotime(now())))->get();
+        // $items = Licensing::where('set_notification',date('Y-m-d',strtotime(now())))->get();
 
-        $items_agg = Agreement::where('set_notification',date('Y-m-d',strtotime(now())))->get();
+        // $items_agg = Agreement::where('set_notification',date('Y-m-d',strtotime(now())))->get();
 
-        $job = (new SendBulkQueueEmail($items,$items_agg))
-            ->delay(
-            	now()
-            	->addSeconds(2)
-            );
+        // $job = (new SendBulkQueueEmail($items,$items_agg))
+        //     ->delay(
+        //     	now()
+        //     	->addSeconds(2)
+        //     );
 
-        dispatch($job);
+        // dispatch($job);
 
         // Blast Whatsapp
 
