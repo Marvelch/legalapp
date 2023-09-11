@@ -47,5 +47,7 @@ class AutoSendEmail extends Command
             $sendMail = new SendMail($item);
             Mail::to($item->users->email)->cc($ccEmails)->send($sendMail);
         }
+
+        return 0;
     }
 }
