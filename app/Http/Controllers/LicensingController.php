@@ -200,6 +200,18 @@ class LicensingController extends Controller
         DB::beginTransaction();
 
         try {
+
+            $licensing = Licensing::find($id)->first();
+
+            $document = document::where('key',$licensing->document_keys)->get();
+
+            foreach($document as $key => $item) {
+                if (Storage::exists($item->path)) {
+                    Storage::delete($item->path);
+                    document::find($item->id)->delete();
+                }
+            }
+
             Licensing::find($id)->delete();
 
             DB::commit();
@@ -207,10 +219,12 @@ class LicensingController extends Controller
 
             return back();
         } catch (\Throwable $th) {
-             DB::rollback();
+            DB::rollback();
 
-            Alert::error('FAIL','Failed to delete data, please check again');
-            return back();
+            // Alert::error('FAIL','Failed to delete data, please check again');
+            // return back();
+
+            return $th;
         }
     }
 

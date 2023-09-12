@@ -216,7 +216,14 @@ class AgreementController extends Controller
         try {
             $agreements = Agreement::find($id)->first();
 
-            Storage::delete($agreements->documents);
+            $documentAgreement = documentAgreement::where('key',$agreements->document_keys)->get();
+
+            foreach($documentAgreement as $key => $item) {
+                if (Storage::exists($item->path)) {
+                    Storage::delete($item->path);
+                    documentAgreement::find($item->id)->delete();
+                }
+            }
 
             Agreement::find($id)->delete();
 
@@ -225,7 +232,7 @@ class AgreementController extends Controller
 
             return back();
         } catch (\Throwable $th) {
-             DB::rollback();
+            DB::rollback();
 
             Alert::error('FAIL','Failed to delete data, please check again');
             return back();

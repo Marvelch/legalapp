@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('key')->references('document_keys')->on('licensings');
             $table->string('file_name');
             $table->string('path');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

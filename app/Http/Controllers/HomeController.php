@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Licensing;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -27,11 +28,43 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $com_counts = Company::count();
-        $agg_counts = Agreement::count();
-        $lic_counts = Licensing::count();
-        $pub_counts = Publisher::count();
+        /* ---------------------------------------- Licensing ---------------------------------------- */
+        $monthlyCounts = [];
 
-        return view('home',compact('com_counts','agg_counts','lic_counts','pub_counts'));
+        // Loop through the months from January (1) to December (12)
+        for ($month = 1; $month <= 12; $month++) {
+            // Calculate the count for the current month
+            $count = Licensing::whereMonth('created_at', $month)->count();
+
+            // Add the count to the array with the month as the key
+            $monthlyCounts[$month] = $count;
+        }
+
+        $monthlyNewArray = [];
+        foreach($monthlyCounts as $item) {
+            array_push($monthlyNewArray, $item);
+        }
+
+        /* ---------------------------------------- Agreement ---------------------------------------- */
+        $monthlyAgCounts = [];
+
+        // Loop through the months from January (1) to December (12)
+        for ($month = 1; $month <= 12; $month++) {
+            // Calculate the count for the current month
+            $count = Agreement::whereMonth('created_at', $month)->count();
+
+            // Add the count to the array with the month as the key
+            $monthlyAgCounts[$month] = $count;
+        }
+
+        $monthlyAgNewArray = [];
+        foreach($monthlyAgCounts as $item) {
+            array_push($monthlyNewArray, $item);
+        }
+
+        $publishers = Publisher::count();
+        $companys = Company::count();
+
+    return view('home',compact('monthlyNewArray','monthlyAgNewArray','publishers','companys'));
     }
 }

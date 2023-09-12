@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('period')->nullable();
             $table->date('add_date')->nullable();
             $table->date('set_notification')->nullable();
-            $table->String('document_keys')->index()->nullable();
+            $table->String('document_keys')->index()->nullable()->onDelete('cascade');
             $table->string('description')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

@@ -103,7 +103,7 @@
                 <tbody class="text-sm">
                     <tr>
                         <td class="col-md-10">{{$item->file_name}}</td>
-                        <td><a href="{{route('download_licensing',['id'=>Crypt::encryptString($licensings->documents)])}}"><i class="bi bi-download"></i></a></td>
+                        <td><a href="{{route('download_licensing',['id'=>Crypt::encryptString($item->path)])}}"><i class="bi bi-download"></i></a></td>
                     </tr>
                 </tbody>
             </table>
