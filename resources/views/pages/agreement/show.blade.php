@@ -51,7 +51,15 @@
                                             </tr>
                                             <tr>
                                                 <td>Nama Perusahaan</td>
-                                                <td class="text-uppercase">: {{ucfirst($agreements->companys->name)}}</td>
+                                                <td class="text-uppercase">: {{@$agreements->companys->name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alamat Perusahaan</td>
+                                                <td>: {{@$agreements->companys->address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Divisi</td>
+                                                <td>: {{@$agreements->companys->divisions->name}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Nama Counter Party</td>

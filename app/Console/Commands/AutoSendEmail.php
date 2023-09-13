@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use App\Mail\SendEmailAgreement;
 use App\Mail\SendMail;
 use App\Models\Agreement;
+use App\Models\Division;
 use App\Models\Licensing;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
 
 class AutoSendEmail extends Command
@@ -47,7 +49,5 @@ class AutoSendEmail extends Command
             $sendMail = new SendMail($item);
             Mail::to($item->users->email)->cc($ccEmails)->send($sendMail);
         }
-
-        return 0;
     }
 }

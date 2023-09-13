@@ -47,23 +47,35 @@
                                         <tbody class="text-capitalize" style="font-size: 13px;">
                                             <tr>
                                                 <td>No Perizinaan</td>
-                                                <td>: {{strtoupper($licensings->permit_number)}}</td>
+                                                <td>: {{strtoupper(@$licensings->permit_number)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Nama Perizinaan</td>
-                                                <td>: {{ucfirst($licensings->permit_name)}}</td>
+                                                <td>: {{ucfirst(@$licensings->permit_name)}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Nama Instansi</td>
-                                                <td>: {{$licensings->publishers->name}}</td>
+                                                <td class="text-uppercase">: {{@$licensings->publishers->name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nama Perusahaan</td>
+                                                <td class="text-uppercase">: {{@$licensings->companys->name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alamat Perusahaan</td>
+                                                <td>: {{@$licensings->companys->address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Divisi</td>
+                                                <td>: {{@$licensings->companys->divisions->name}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal Terbit</td>
-                                                <td>: {{date('d-m-Y',strtotime($licensings->date_start))}}</td>
+                                                <td>: {{date('d-m-Y',strtotime(@$licensings->date_start))}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal Berlaku</td>
-                                                <td>: {{date('d-m-Y',strtotime($licensings->date_end))}}</td>
+                                                <td>: {{@date('d-m-Y',strtotime($licensings->date_end))}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Waktu Perpanjangan (hari)</td>
@@ -71,11 +83,11 @@
                                             </tr>
                                             <tr>
                                                 <td>Waktu Perpanjangan</td>
-                                                <td>: {{date('d-m-Y',strtotime($licensings->extra_time))}}</td>
+                                                <td>: {{date('d-m-Y',strtotime(@$licensings->add_date))}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Keterangan</td>
-                                                <td>: {{ $licensings->description}}</td>
+                                                <td>: {{ @$licensings->description}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
