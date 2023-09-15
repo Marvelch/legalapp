@@ -8,6 +8,7 @@ use App\Models\Agreement;
 use App\Models\Division;
 use App\Models\Licensing;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Mail;
 
@@ -43,11 +44,31 @@ class AutoSendEmail extends Command
         foreach($items_agg as $item) {
             $sendMail = new SendEmailAgreement($item);
             Mail::to($item->users->email)->cc($ccEmails)->send($sendMail);
+
+            $data = [
+                'nama_pengguna' => $item->users->name,
+                'no_perizinan' => $item->counter_party_name,
+                'nama_perizinan' => $item->agreement_name,
+                'telepon' => $item->users->phone,
+                'tanggal' => $item->date_end,
+            ];
+
+            Http::post('http://10.10.30.14:8888/wa/perizinan', $data);
         }
 
         foreach($items as $item) {
             $sendMail = new SendMail($item);
             Mail::to($item->users->email)->cc($ccEmails)->send($sendMail);
+
+            $data = [
+                'nama_pengguna' => $item->users->name,
+                'no_perizinan' => $item->permit_number,
+                'nama_perizinan' => $item->permit_name,
+                'telepon' => $item->users->phone,
+                'tanggal' => $item->date_end,
+            ];
+
+            Http::post('http://10.10.30.14:8888/wa/perizinan', $data);
         }
     }
 }

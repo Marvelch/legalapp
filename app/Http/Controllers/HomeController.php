@@ -59,7 +59,7 @@ class HomeController extends Controller
 
         $monthlyAgNewArray = [];
         foreach($monthlyAgCounts as $item) {
-            array_push($monthlyNewArray, $item);
+            array_push($monthlyAgNewArray, $item);
         }
 
         $publishers = Publisher::count();
