@@ -63,7 +63,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Alamat Perusahaan</td>
-                                                <td>: {{@$licensings->companys->address}}</td>
+                                                <td>: {{@$licensings->companys->regions->name}} - {{@$licensings->companys->address}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Divisi</td>

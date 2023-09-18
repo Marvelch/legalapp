@@ -42,6 +42,10 @@
                                                 <td>: {{strtoupper($companys->name)}}</td>
                                             </tr>
                                             <tr>
+                                                <td class="fw-bold text-muted">Kota</td>
+                                                <td>: {{ucfirst($companys->regions->name)}}</td>
+                                            </tr>
+                                            <tr>
                                                 <td class="fw-bold text-muted">Alamat</td>
                                                 <td>: {{ucfirst($companys->address)}}</td>
                                             </tr>

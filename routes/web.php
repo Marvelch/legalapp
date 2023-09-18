@@ -90,6 +90,8 @@ Route::group(['prefix' => 'company','middleware' => ['auth']], function(){
     Route::put('/update/{id}',[CompanyController::class,'update'])->name('update_company');
     Route::get('/company-data',[CompanyController::class,'companyTable'])->name('table_company');
     Route::get('/delete/{id}',[CompanyController::class,'destroy'])->name('destroy_company');
+
+    Route::get('/search-regions',[CompanyController::class,'searchingRegions'])->name('searching_region');
 });
 
 Route::group(['prefix' => 'licensing','middleware' => ['auth']], function(){

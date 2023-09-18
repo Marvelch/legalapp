@@ -55,7 +55,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Alamat Perusahaan</td>
-                                                <td>: {{@$agreements->companys->address}}</td>
+                                                <td>: {{@$agreements->companys->regions->name}} - {{@$agreements->companys->address}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Divisi</td>

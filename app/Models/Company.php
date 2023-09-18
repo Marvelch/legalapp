@@ -13,6 +13,7 @@ class Company extends Model
 
     protected $fillable = [
         'name',
+        'region_id',
         'address',
         'division_id',
         'information'
@@ -20,5 +21,9 @@ class Company extends Model
 
     public function divisions() {
         return $this->belongsTo(Division::class,'division_id','id');
+    }
+
+    public function regions() {
+        return $this->belongsTo(region::class,'region_id','id');
     }
 }

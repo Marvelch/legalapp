@@ -13,6 +13,7 @@ use DB;
 use Auth;
 use Alert;
 use App\Models\Agreement;
+use App\Models\region;
 
 class CompanyController extends Controller
 {
@@ -39,6 +40,8 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->regions;
+
         $request->validate([
             'name'          => 'required|min:2|max:255',
             'address'       => 'required|min:2|max:255',
@@ -52,7 +55,8 @@ class CompanyController extends Controller
                 'name' => strtolower($request->name),
                 'address' => strtolower($request->address),
                 'division_id' => $request->division,
-                'information' => $request->information
+                'information' => $request->information,
+                'region_id' => $request->regions
             ]);
 
             DB::commit();
@@ -107,6 +111,7 @@ class CompanyController extends Controller
                 'name' => strtolower($request->name),
                 'address' => strtolower($request->address),
                 'division_id' => $request->division,
+                'region_id' => $request->regions
             ]);
 
             DB::commit();
@@ -140,7 +145,7 @@ class CompanyController extends Controller
             }else{
                 Company::find($id)->delete();
             }
-            
+
             DB::commit();
             Alert::success('SUCCEED','Data deletion has been successful');
 
@@ -194,5 +199,20 @@ class CompanyController extends Controller
         })
         ->rawColumns(['action'])
         ->toJson();
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function searchingRegions(Request $request)
+    {
+        $data = [];
+
+        $data = region::select("name", "id")
+                        ->where('name', 'LIKE', '%'. $request->get('q'). '%')
+                        ->whereRaw('CHAR_LENGTH(code) <= 2')
+                        ->get();
+
+        return response()->json($data);
     }
 }
