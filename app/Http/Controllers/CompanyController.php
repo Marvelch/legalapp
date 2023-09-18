@@ -40,8 +40,6 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->regions;
-
         $request->validate([
             'name'          => 'required|min:2|max:255',
             'address'       => 'required|min:2|max:255',
@@ -210,7 +208,8 @@ class CompanyController extends Controller
 
         $data = region::select("name", "id")
                         ->where('name', 'LIKE', '%'. $request->get('q'). '%')
-                        ->whereRaw('CHAR_LENGTH(code) <= 2')
+                        ->whereRaw('CHAR_LENGTH(code) > 2')
+                        ->whereRaw('CHAR_LENGTH(code) <= 5')
                         ->get();
 
         return response()->json($data);

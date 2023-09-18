@@ -73,7 +73,7 @@
                                                 @enderror
                                         </div>
                                         <div class="col-sm-auto">
-                                            <button class="btn btn-primary btn-sm mt-4"><i class="bi bi-send-x"></i></button>
+                                            <button class="btn btn-primary btn-sm mt-4" disabled><i class="bi bi-send-x"></i></button>
                                         </div>
                                     </form>
                                 </div>
@@ -117,6 +117,7 @@
 </div>
 <script>
     $('#regions').select2({
+        minimumInputLength: 3,
         ajax: {
             url: '{{route("searching_region")}}',
             dataType: 'json',
