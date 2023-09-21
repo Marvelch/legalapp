@@ -191,8 +191,9 @@
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {
+                        var regionName = item.region ? item.region : '';
                         return {
-                            text: item.name,
+                            text: item.name+' - '+regionName,
                             id: item.id
                         }
                     })

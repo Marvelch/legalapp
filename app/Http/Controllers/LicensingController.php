@@ -249,9 +249,17 @@ class LicensingController extends Controller
     {
         $data = [];
 
-        $data = Company::select("name", "id")
-                        ->where('name', 'LIKE', '%'. $request->get('q'). '%')
-                        ->get();
+        $companies = Company::with('regions') // Mengambil relasi regions
+                            ->where('name', 'LIKE', '%'. $request->get('q'). '%')
+                            ->get();
+
+        foreach ($companies as $company) {
+            $data[] = [
+                'id' => $company->id,
+                'name' => $company->name,
+                'region' => $company->regions->name ?? '', // Mengambil nama region dari relasi
+            ];
+        }
 
         return response()->json($data);
     }
