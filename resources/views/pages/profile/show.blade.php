@@ -40,7 +40,7 @@
                         <div class="col-md-8">
                             <div class="d-flex bd-highlight">
                                 <div class="me-auto bd-highlight">
-                                    <h3 class="text-muted">{{Auth::user()->name}} </h3>
+                                    <h3 class="text-muted text-capitalize">{{Auth::user()->name}} </h3>
                                 </div>
                                 <div class="bd-highlight"><a
                                         href="{{route('edit_profile',['id'=>Crypt::encryptString(Auth::user()->id)])}}"><i

@@ -55,9 +55,6 @@
                                             class="form-control form-control-sm" name="state"
                                             style="width: 100%; text-transform:uppercase;">
                                         </select>
-                                        <input type="hidden" value="{{$agreements->id}}" id="company_id_hidden">
-                                        <input type="hidden" value="{{$agreements->companys->name}}"
-                                            id="company_name_hidden">
                                         @error('company')
                                         <p class="text-sm text-danger">*{{ $message }}</p]>
                                             @enderror
@@ -183,9 +180,12 @@
 
     $('#renewalGroup').hide();
 
-    var $option = $("<option selected></option>").val($('#company_id_hidden').val()).text($('#company_name_hidden').val());
+    // var $option = $("<option selected></option>").val($('#company_id_hidden').val()).text($('#company_name_hidden').val());
 
-    $('#company').append($option).trigger('change');
+    // $('#company').append($option).trigger('change');
+
+    var regencyOption = new Option(<?php echo json_encode($agreements->companys->name) ?>, <?php echo json_encode($agreements->companys->id) ?>, false, false);
+    $('#company').append(regencyOption).trigger('change');
 
     if($(".check_date_period").is(':checked')){
         $('.hihow').show();

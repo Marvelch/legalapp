@@ -201,8 +201,10 @@ class AgreementController extends Controller
 
             DB::rollback();
 
-            Alert::error('FAIL','Failed to save because we ran into a problem');
-            return back();
+            // Alert::error('FAIL','Failed to save because we ran into a problem');
+            // return back();
+
+            return $th;
         }
     }
 
