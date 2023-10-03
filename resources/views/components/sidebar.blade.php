@@ -8,13 +8,12 @@
             </a>
         </div>
         <div class="navbar-content">
-            <ul class="pc-navbar" style="font-family: var(--bs-font-sans-serif);">
+            <ul class="pc-navbar" style="">
                 <li class="pc-item pc-caption">
                     <i class="ti ti-dashboard"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="{{url('/home')}}" class="pc-link"><span class="pc-micon"><i
-                                class="ti ti-dashboard"></i></span><span class="pc-mtext">Dashboard</span></a>
+                    <a href="{{url('/home')}}" class="pc-link"><span class="pc-micon"><i class="bi bi-house-fill"></i></span><span class="pc-mtext">Dashboard</span></a>
                 </li>
                 <!-- <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-book"></i></span><span
@@ -26,7 +25,7 @@
                     </ul>
                 </li> -->
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-key"></i></span><span
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="bi bi-person-fill-check"></i></span><span
                             class="pc-mtext">Penerbit</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
@@ -37,7 +36,7 @@
                     </ul>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-clipboard"></i></span><span
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="bi bi-file-bar-graph"></i></span><span
                             class="pc-mtext">Perusahaan</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
@@ -48,7 +47,7 @@
                     </ul>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-archive"></i></span><span
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="bi bi-file-earmark-pdf-fill"></i></span><span
                             class="pc-mtext">Perizinan</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
@@ -59,7 +58,7 @@
                     </ul>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="ti ti-list"></i></span><span
+                    <a href="#!" class="pc-link"><span class="pc-micon"><i class="bi bi-file-earmark-lock2-fill"></i></span><span
                             class="pc-mtext">Perjanjian</span><span class="pc-arrow"><i
                                 class="ti ti-chevron-right"></i></span></a>
                     <ul class="pc-submenu">
@@ -93,10 +92,9 @@
                     <i class="ti ti-brand-chrome"></i>
                 </li> -->
                 @if(Auth::user()->type == 'admin')
-                <li class="pc-item"><a href="{{route('index_user')}}" class="pc-link"><span class="pc-micon"><i
-                                class="ti ti-user"></i></span><span class="pc-mtext">Pengguna</span></a></li>
-                <li class="pc-item"><a href="{{route('index_mail')}}" 
-                        class="pc-link"><span class="pc-micon"><i class="ti bi-mailbox2"></i></span><span
+                <li class="pc-item"><a href="{{route('index_user')}}" class="pc-link"><span class="pc-micon"><i class="bi bi-person-fill-lock"></i></span><span class="pc-mtext">Pengguna</span></a></li>
+                <li class="pc-item"><a href="{{route('index_mail')}}"
+                        class="pc-link"><span class="pc-micon"><i class="bi bi-inbox-fill"></i></span><span
                             class="pc-mtext">Mail</span></a></li>
                 @endif
             </ul>

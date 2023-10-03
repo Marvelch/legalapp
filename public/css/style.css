@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&family=Nunito&family=Poppins&family=Quicksand:wght@500&family=Roboto+Condensed&family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Noto+Sans:wght@300&family=Nunito&family=Open+Sans&family=Oswald&family=Poppins&family=Quicksand:wght@500&family=Roboto+Condensed&family=Roboto:wght@300;400&display=swap");
 
 @charset "UTF-8";
 :root {
@@ -94,7 +94,7 @@ a:link {
 }
 body {
     margin: 0;
-    font-family: var(--bs-font-sans-nunito);
+    font-family: "Roboto Condensed", sans-serif;
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
@@ -2665,8 +2665,7 @@ textarea.form-control.is-invalid {
 .btn {
     --bs-btn-padding-x: 1rem;
     --bs-btn-padding-y: 0.5rem;
-    --bs-btn-font-family: ;
-    --bs-btn-font-size: 0.475rem;
+    --bs-btn-font-size: 0.7rem;
     --bs-btn-font-weight: 500;
     --bs-btn-line-height: 1.5;
     --bs-btn-color: #212529;
@@ -20065,5 +20064,3 @@ select.form-control[data-multiselectsplitter-secondselect-selector] {
     border-radius: 0px;
     width: 100px;
 }
-
-

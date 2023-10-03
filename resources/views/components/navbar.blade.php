@@ -47,7 +47,7 @@
     <!-- [Mobile Media Block end] -->
     <div class="ms-auto">
       <ul class="list-unstyled">
-        <li class="dropdown pc-h-item">
+        <!-- <li class="dropdown pc-h-item">
           <a class="pc-head-link head-link-secondary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
             role="button" aria-haspopup="false" aria-expanded="false">
             <i class="ti ti-bell"></i>
@@ -56,7 +56,7 @@
             <div class="dropdown-header">
               <h5>All Notification <span class="badge bg-warning rounded-pill ms-1">1</span></h5>
             </div>
-            <!-- <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative"
+            <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative"
               style="max-height: calc(100vh - 215px)">
               <div class="list-group list-group-flush w-100">
                 <div class="list-group-item">
@@ -137,24 +137,24 @@
                   </div>
                 </a>
               </div>
-            </div> -->
+            </div>
             <div class="dropdown-divider"></div>
             <div class="text-center py-2">
               <a href="#!" class="link-primary">Mark as all read</a>
             </div>
           </div>
-        </li>
+        </li> -->
         <li class="dropdown pc-h-item header-user-profile">
           <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
             role="button" aria-haspopup="false" aria-expanded="false">
-            <img src="{{asset('./images/user/avatar-1.jpg')}}" alt="user-image" class="user-avtar" />
+            <img src="{{asset('./images/user/avatar-1.png')}}" alt="user-image" class="user-avtar" />
             <span>
               <i class="ti ti-settings"></i>
             </span>
           </a>
           <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
             <div class="dropdown-header">
-                <a href="#" class="dropdown-item">
+                <a href="{{route('show_profile',['id'=>Crypt::encryptString(Auth::user()->id)])}}" class="dropdown-item">
                   <i class="ti ti-settings"></i>
                   <span>Account Settings</span>
                 </a>

@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AgreementController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegalEntityController;
 use App\Http\Controllers\LicensingController;
 use App\Http\Controllers\MailServerController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\UsersController;
 use App\Models\LegalEntity;
@@ -28,6 +30,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::get('testChart', [HomeController::class,'testChart']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -123,6 +127,12 @@ Route::group(['prefix' => 'agreement','middleware' => ['auth']], function(){
     Route::get('/delete/{id}',[AgreementController::class,'destroy'])->name('destroy_agreement');
 
     // Route::get('/search-company',[AgreementController::class,'searchingCompany'])->name('searching_company');
+});
+
+Route::group(['prefix' => 'profile','middleware' => ['auth']], function(){
+    Route::get('/show/{id}',[ProfileController::class,'show'])->name('show_profile');
+    Route::get('/edit/{id}',[ProfileController::class,'edit'])->name('edit_profile');
+    Route::put('/update/{id}',[ProfileController::class,'update'])->name('update_profile');
 });
 
 Route::post('/logout', function() {
