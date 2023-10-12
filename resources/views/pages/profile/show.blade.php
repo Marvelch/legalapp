@@ -44,8 +44,7 @@
                                 </div>
                                 <div class="bd-highlight"><a
                                         href="{{route('edit_profile',['id'=>Crypt::encryptString(Auth::user()->id)])}}"><i
-                                            class="bi bi-qr-code-scan text-primary"></i> <span class="text-sm">Edit
-                                            Profile</span></a></div>
+                                            class="bi bi-qr-code-scan text-primary"></i> <span class="text-sm">Ganti Password</span></a></div>
                             </div>
                             <small class="text-primary opacity-75">Divisi Legal PT Sekar Bumi Group</small>
                             <hr class="mt-4 mb-4">

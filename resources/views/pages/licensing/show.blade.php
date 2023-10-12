@@ -33,12 +33,13 @@
                             <div class="card-body m-4">
                                 <div class="row justify-content-between">
                                     <div class="col-8">
-                                        <h5><i class="bi bi-filetype-doc h3"></i> <span style="margin-left: 10px;">Data Perizinan</span></h5>
+                                        <h5><i class="fa-solid fa-file-circle-check fa-lg"></i><span style="margin-left: 10px;">Data Perizinan</span></h5>
                                         <p class="sub_title">Periksa kembali setiap dokumen yang telah dibuat. Print sebagai bentuk fisik untuk dokumen perizinan</p>
                                     </div>
                                     <div class="col-4 my-2 d-flex justify-content-end">
-                                        <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 40px;" title="Print Perizinan"><i class="bi bi-printer-fill" style="font-size: 20px;"></i></button>
-                                        <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 40px;" title="Dokumen" data-bs-toggle="modal" data-bs-target="#documentModal"><i class="bi bi-files" style="font-size: 20px;"></i></button>
+                                        <a class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 35px;" title="Edit Perizinan" href="{{route('edit_licensing',['id'=>Crypt::encryptString($licensings->id)])}}"><i class="bi bi-pencil-fill" style="font-size: 15px;"></i></a>
+                                        <!-- <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 35px;" title="Print Perizinan"><i class="bi bi-printer-fill" style="font-size: 15px;"></i></button> -->
+                                        <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 35px;" title="Dokumen" data-bs-toggle="modal" data-bs-target="#documentModal"><i class="bi bi-files" style="font-size: 15px;"></i></button>
                                     </div>
                                 </div>
                                 <hr class="shadow">
@@ -59,7 +60,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Nama Perusahaan</td>
-                                                <td class="text-uppercase">: {{@$licensings->companys->name}}</td>
+                                                <td class="text-uppercase">: {{@$licensings->companys->name}} - {{@$licensings->companys->regions->name}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Alamat Perusahaan</td>
@@ -106,23 +107,23 @@
 <div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header fw-bold">
         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       </div>
       <div class="modal-body">
         @foreach($licensings->documents as $item)
-            <table class="table table-borderless">
+            <table class="table table-striped">
                 <tbody class="text-sm">
                     <tr>
                         <td class="col-md-10">{{$item->file_name}}</td>
-                        <td><a href="{{route('download_licensing',['id'=>Crypt::encryptString($item->path)])}}"><i class="bi bi-download"></i></a></td>
+                        <td><a href="{{route('download_licensing',['id'=>Crypt::encryptString($item->path)])}}" style="font-size: 15px;"><i class="fa-solid fa-file-arrow-down fa-xl"></i></a></td>
                     </tr>
                 </tbody>
             </table>
         @endforeach
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="border-radius: 0px;">Tutup</button>
+        <button type="button" class="btn text-sm btn-primary" data-bs-dismiss="modal" style="border-radius: 2px;">Tutup</button>
       </div>
     </div>
   </div>

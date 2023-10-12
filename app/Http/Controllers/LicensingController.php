@@ -286,7 +286,7 @@ class LicensingController extends Controller
         $model = Licensing::query();
             return DataTables::eloquent($model)
             ->addColumn('action',function($model){
-            $btn = '<div class="d-flex justify-content-center"><a href="/licensing/show/'.Crypt::encryptString($model->id).'" class="btn btn-primary btn-sm m-1"><i class="ti ti-eye"></i></a><a href="/licensing/edit/'.Crypt::encryptString($model->id).'" class="btn btn-success btn-sm m-1" style="color: white"><i class="ti ti-pencil"></i></a><button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#modalDelete'.$model->id.'"><i class="ti ti-trash"></i></button></div>
+            $btn = '<div class="d-flex justify-content-center"><button type="button" class="btn btn-sm btn-secondary m-1" data-bs-toggle="modal" data-bs-target="#commentModal'.$model->id.'"><i class="fa-solid fa-comments"></i></button><a href="/licensing/show/'.Crypt::encryptString($model->id).'" class="btn btn-primary btn-sm m-1"><i class="ti ti-eye"></i></a><a href="/licensing/edit/'.Crypt::encryptString($model->id).'" class="btn btn-success btn-sm m-1" style="color: white"><i class="ti ti-pencil"></i></a><button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#modalDelete'.$model->id.'"><i class="ti ti-trash"></i></button></div>
                     <!-- Modal -->
                         <div class="modal fade" id="modalDelete'.$model->id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -311,9 +311,26 @@ class LicensingController extends Controller
                             </div>
                         </div>
                         </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="commentModal'.$model->id.'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                '.$model->description.'
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary text-sm" data-bs-dismiss="modal">Tutup</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                         ';
             return $btn;
         })
+        ->addColumn('company','{{strtoupper($model->companys->name)}}')
         ->rawColumns(['action'])
         ->toJson();
     }

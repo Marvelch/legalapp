@@ -27,7 +27,7 @@
                 <div class="card-body my-1">
                     <div class="row">
                         <div class="col">
-                            
+
                         </div>
                         <div class="col-auto">
                             <div class="btn-group">
@@ -70,6 +70,7 @@
 <script>
     $(document).ready(function() {
         $('#legalentity-table').DataTable({
+            buttons: [],
             processing: true,
             serverSide: true,
             ajax: '{{ route("table_user") }}',

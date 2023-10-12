@@ -33,12 +33,13 @@
                             <div class="card-body m-4">
                                 <div class="row justify-content-between">
                                     <div class="col-8">
-                                        <h5><i class="bi bi-send-check-fill h3"></i> <span style="margin-left: 10px;">Data Perjanjian</span></h5>
+                                        <h5><i class="fa-solid fa-handshake-angle fa-lg"></i></i> <span style="margin-left: 5px;">Data Perjanjian</span></h5>
                                         <p class="sub_title">Periksa kembali setiap dokumen yang telah dibuat. Print sebagai bentuk fisik untuk dokumen perizinan</p>
                                     </div>
                                     <div class="col-4 my-2 d-flex justify-content-end">
-                                        <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 40px;" title="Print Perizinan"><i class="bi bi-printer-fill" style="font-size: 20px;"></i></button>
-                                        <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 40px;" title="Dokumen" data-bs-toggle="modal" data-bs-target="#documentModal"><i class="bi bi-files" style="font-size: 20px;"></i></button>
+                                        <a class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 35px;" title="Edit Perizinan" href="{{route('edit_agreement',['id'=>Crypt::encryptString($agreements->id)])}}"><i class="bi bi-pencil-fill" style="font-size: 15px;"></i></a>
+                                        <!-- <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 40px;" title="Print Perizinan"><i class="bi bi-printer-fill" style="font-size: 20px;"></i></button> -->
+                                        <button class="btn btn-success btn-flat shadow m-1" style="border-radius: 2px; height: 35px;" title="Dokumen" data-bs-toggle="modal" data-bs-target="#documentModal"><i class="bi bi-files" style="font-size: 15px;"></i></button>
                                     </div>
                                 </div>
                                 <hr class="shadow">
@@ -111,11 +112,11 @@
       </div>
       <div class="modal-body">
         @foreach($agreements->documentAgreements as $item)
-            <table class="table table-borderless">
+            <table class="table table-striped">
                 <tbody class="text-sm">
                     <tr>
                         <td class="col-md-10">{{$item->file_name}}</td>
-                        <td><a href="{{route('download_licensing',['id'=>Crypt::encryptString($item->path)])}}"><i class="bi bi-download"></i></a></td>
+                        <td><a href="{{route('download_licensing',['id'=>Crypt::encryptString($item->path)])}}"><i class="fa-solid fa-file-arrow-down fa-xl"></i></a></td>
                     </tr>
                 </tbody>
             </table>

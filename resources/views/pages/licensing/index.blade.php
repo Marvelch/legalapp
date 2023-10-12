@@ -32,6 +32,7 @@
                                 <th>Perizinan</th>
                                 <th>Terbit</th>
                                 <th>Berlaku</th>
+                                <th>Perusahaan</th>
                                 <th>Bantuan</th>
                             </tr>
                         </thead>
@@ -57,6 +58,7 @@
                 {data: 'permit_name', name: 'permit_name'},
                 {data: 'date_start', name: 'date_start'},
                 {data: 'date_end', name: 'date_end'},
+                {data: 'company', name: 'company'},
                 {data: 'action', name: 'action'},
             ]
         });

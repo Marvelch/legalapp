@@ -35,28 +35,27 @@
                         @method('PUT')
                         @csrf
                         <div class="row d-flex justify-content-center">
-                            <div class="col-md-10">
-                                <h4 class="opacity-75 mt-4">Profile Pengguna</h4>
-                                <p class="text-sm text-muted">Pastikan melengkapi semua kolom pada halaman profile
-                                    pengguna</p>
+                            <div class="col-md-8">
+                                <h4 class="opacity-75 mt-4"><i class="bi bi-lock-fill"></i> Ganti Kata Sandi</h4>
+                                <p class="text-sm text-muted">Pastikan untuk selalu mengganti kata sandi secara berkala.</p>
                                 <div class="form-group my-4 text-muted">
-                                    <label for="">Nama Lengkap</label>
-                                    <input type="text" name="name" class="form-control form-control-sm"
-                                        value="{{Auth::user()->name}}">
+                                    <label for="" class="fw-bold">Nama Lengkap</label>
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{Auth::user()->name}}" disabled>
                                     @error('name')
                                     <p class="text-sm text-danger">*{{ $message }}</p]>
                                         @enderror
                                 </div>
                                 <div class="form-group text-muted">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email" class="form-control form-control-sm"
-                                        value="{{@Auth::user()->email}}">
+                                    <label for="" class="fw-bold">Email</label>
+                                    <input type="text" name="email" class="form-control"
+                                        value="{{@Auth::user()->email}}" disabled>
                                         @error('email')
                                     <p class="text-sm text-danger">*{{ $message }}</p]>
                                         @enderror
                                 </div>
                                 <div class="form-group text-muted">
-                                    <label for="">Password</label>
+                                    <label for="" class="fw-bold">Kata Sandi</label>
                                     <input type="text" name="password" class="form-control form-control-sm"
                                         value="{{@Auth::user()->password_text}}">
                                     @error('password')
@@ -65,7 +64,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary col-md-2">Perbaharui</button>
+                                        <button class="btn btn-primary col-md-2">Simpan</button>
                                     </div>
                                 </div>
                             </div>

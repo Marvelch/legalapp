@@ -10,10 +10,10 @@
             <div class="card-body shadow">
                 <table class="table table-border">
                     <tbody>
-                        <tr>
+                        <tr class="text-center text-uppercase">
                             <th>Nama Perizinan</th>
                             <th>Nomor</th>
-                            <th>Tanggal</th>
+                            <th>Tanggal Berakhir</th>
                         </tr>
                     </tbody>
                     <tbody>
@@ -21,7 +21,7 @@
                         <tr style="font-size: 11px;">
                             <td class="text-capitalize">{{$item->permit_name}}</td>
                             <td class="text-uppercase">{{$item->permit_number}}</td>
-                            <td>{{date('d-m-Y',strtotime($item->date_end))}}</td>
+                            <td class="text-center">{{date('d-m-Y',strtotime($item->date_end))}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -36,10 +36,10 @@
             <div class="card-body shadow">
                 <table class="table table-border">
                     <tbody>
-                        <tr>
+                        <tr class="text-center text-uppercase">
                             <th>Nama Perjanjian</th>
                             <th>Counter</th>
-                            <th>Tanggal</th>
+                            <th>Tanggal Berakhir</th>
                         </tr>
                     </tbody>
                     <tbody>
@@ -47,7 +47,7 @@
                         <tr style="font-size: 11px;">
                             <td class="text-capitalize">{{$item->agreement_name}}</td>
                             <td class="text-uppercase">{{$item->counter_party_name}}</td>
-                            <td>{{date('d-m-Y',strtotime($item->date_end))}}</td>
+                            <td class="text-center">{{date('d-m-Y',strtotime($item->date_end))}}</td>
                         </tr>
                         @endforeach
                     </tbody>
