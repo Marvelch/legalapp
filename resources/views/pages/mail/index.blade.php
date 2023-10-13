@@ -6,15 +6,12 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Mail</h5>
-                    </div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{url('/home')}}">Home</a>
+                            <a href="{{url('/home')}}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Index
+                            Utama
                         </li>
                     </ul>
                 </div>
@@ -44,7 +41,7 @@
                                     <li>
                                         <div class="row">
                                             <div class="col-auto">
-                                                <a class="dropdown-item" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)" href="{{route('create_mail')}}">Tambah Mail Server</a>
+                                                <a class="dropdown-item fw-bold" style="font-size: 12px; font-family: var(--bs-font-sans-nunito)" href="{{route('create_mail')}}">Tambah Mail</a>
                                             </div>
                                         </div>
                                     </li>
@@ -76,6 +73,7 @@
 <script>
     $(document).ready(function() {
         $('#mail-table').DataTable({
+            buttons: [],
             processing: true,
             serverSide: true,
             ajax: '{{ route("table_mail") }}',

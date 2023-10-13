@@ -39,7 +39,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2"
+                                        <label class="mb-2 fw-bold"
                                             style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Nama
                                             Perusahaan</label>
                                         <input type="text" name="name" class="form-control form-control-sm"
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2">Pilih Kota</label>
+                                        <label class="mb-2 fw-bold">Pilih Kota</label>
                                         <select name="regions" class="regions" id="regions"
                                             class="form-control form-control-sm" name="state"
                                             style="width: 100%; text-transform:uppercase;" required>
@@ -62,37 +62,46 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="row g-3 mb-4">
-                                        <div class="col-sm-11">
-                                            <label class="mb-2"
-                                                style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Alamat</label>
-                                            <input type="text" name="address" class="form-control form-control-sm"
-                                                value="{{old('address')}}" required>
-                                            @error('address')
+                                    <label class="mb-2 fw-bold"
+                                        style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Alamat</label>
+                                    <input type="text" name="address" class="form-control form-control-sm"
+                                        value="{{old('address')}}" required>
+                                    @error('address')
+                                    <p class="text-sm text-danger">*{{ $message }}</p]>
+                                        @enderror
+                                </div>
+                                <div class="form-group">
+                                    <div class="mb-4 mt-2">
+                                        <div class="form-group mt-2">
+                                            <label class="mb-2 fw-bold"
+                                                style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Divisi
+                                                Perusahaan</label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="division" class="division form-select form-select-sm"
+                                                        aria-label=".form-select-sm example" required>
+                                                        @foreach($items as $item)
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input name="checkBoxDivision" class="form-check-input"
+                                                        type="checkbox" id="flexSwitchCheckDefault" checked>
+                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Tambah
+                                                        Divisi
+                                                        Perusahaan</label>
+                                                </div>
+                                            </div>
+                                            @error('division')
                                             <p class="text-sm text-danger">*{{ $message }}</p]>
                                                 @enderror
                                         </div>
-                                        <div class="col-sm-auto">
-                                            <button class="btn btn-primary btn-sm mt-4" disabled><i class="bi bi-send-x"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="form-group">
-                                    <div class="mb-4">
-                                        <label class="mb-2"
-                                            style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Divisi
-                                            Perusahaan</label>
-                                        <select name="division" class="form-select form-select-sm"
-                                            aria-label=".form-select-sm example" required>
-                                            @foreach($items as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-4">
-                                        <label class="mb-2"
+                                        <label class="mb-2 fw-bold"
                                             style="font-family: var(--bs-body-font-Roboto); margin-left: 3px;">Keterangan</label>
                                         <textarea name="information" id="" cols="30" rows="4"
                                             class="form-control"></textarea>
@@ -116,6 +125,15 @@
     <!-- [ Main Content ] end -->
 </div>
 <script>
+    $('#flexSwitchCheckDefault').on('click', function () {
+        const check = $('#flexSwitchCheckDefault').is(':checked');
+        if (check == false) {
+            $('.division').prop("disabled", true);
+        } else {
+            $('.division').prop("disabled", false);
+        }
+    });
+
     $('#regions').select2({
         minimumInputLength: 3,
         ajax: {
@@ -135,5 +153,6 @@
             cache: true
         }
     });
+
 </script>
 @endsection

@@ -24,7 +24,7 @@
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body my-5">
+                <div class="card-body">
                     <table class="table table-bordered" id="legalentity-table">
                         <thead>
                             <tr style="font-size: 13px;">
@@ -47,6 +47,7 @@
 <script>
     $(document).ready(function() {
         $('#legalentity-table').DataTable({
+            buttons: [],
             processing: true,
             serverSide: true,
             ajax: '{{ route("table_company") }}',

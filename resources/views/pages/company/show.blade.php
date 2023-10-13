@@ -39,19 +39,19 @@
                                         <tbody class="text-capitalize" style="font-size: 13px;">
                                             <tr>
                                                 <td class="fw-bold col-md-3 text-muted">Nama Perusahaan</td>
-                                                <td>: {{strtoupper($companys->name)}}</td>
+                                                <td>: {{@strtoupper($companys->name)}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold text-muted">Kota</td>
-                                                <td>: {{ucfirst($companys->regions->name)}}</td>
+                                                <td>: {{@ucfirst($companys->regions->name)}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold text-muted">Alamat</td>
-                                                <td>: {{ucfirst($companys->address)}}</td>
+                                                <td>: {{@ucfirst($companys->address)}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold text-muted">Divisi</td>
-                                                <td>: {{strtoupper($companys->divisions->name)}}</td>
+                                                <td>: {{@strtoupper($companys->divisions->name)}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="fw-bold text-muted">Keterangan</td>

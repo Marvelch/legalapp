@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('region_id')->nullable();
             $table->foreign('region_id')->references('id')->on('regions');
             $table->string('address');
-            $table->unsignedBigInteger('division_id');
+            $table->unsignedBigInteger('division_id')->nullable();
             $table->foreign('division_id')->references('id')->on('divisions');
             $table->string('information')->nullable();
             $table->timestamps();

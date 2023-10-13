@@ -43,7 +43,6 @@ class CompanyController extends Controller
         $request->validate([
             'name'          => 'required|min:2|max:255',
             'address'       => 'required|min:2|max:255',
-            'division'      => 'required',
         ]);
 
         DB::beginTransaction();
@@ -52,7 +51,7 @@ class CompanyController extends Controller
             Company::create([
                 'name' => strtolower($request->name),
                 'address' => strtolower($request->address),
-                'division_id' => $request->division,
+                'division_id' => $request->checkBoxDivision == 'on' ? $request->division : null,
                 'information' => $request->information,
                 'region_id' => $request->regions
             ]);
@@ -163,7 +162,7 @@ class CompanyController extends Controller
     {
         $model = Company::query();
             return DataTables::eloquent($model)
-            ->addColumn('division','{{$model->divisions->name}}')
+            ->addColumn('division','{{$model->division_id ? $model->divisions->name : "Tidak Tersedia"}}')
             ->addColumn('action',function($model){
             $btn = '<div class="d-flex justify-content-center"><a href="/company/show/'.Crypt::encryptString($model->id).'" class="btn btn-primary btn-sm m-1"><i class="ti ti-eye"></i></a><a href="/company/edit/'.Crypt::encryptString($model->id).'" class="btn btn-success btn-sm m-1" style="color: white"><i class="ti ti-pencil"></i></a><button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#modalDelete'.$model->id.'"><i class="ti ti-trash"></i></button></div>
                 <!-- Modal -->

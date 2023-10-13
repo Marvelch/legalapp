@@ -24,7 +24,7 @@
         <!-- [ sample-page ] start -->
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body my-2">
+                <div class="card-body">
                     <table class="table table-bordered" id="publisher-table">
                         <thead>
                             <tr style="font-size: 13px;">
@@ -47,6 +47,7 @@
 <script>
     $(document).ready(function() {
         $('#publisher-table').DataTable({
+            buttons: [],
             processing: true,
             serverSide: true,
             ajax: '{{ route("table_publisher") }}',
