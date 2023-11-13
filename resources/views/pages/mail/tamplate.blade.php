@@ -45,7 +45,7 @@
                                         </h1>
                                         <br>
                                         <p style="font-size:15px; color:#455056; margin:8px 0 0; line-height:24px;">
-                                            Pemberitahuan untuk pengingat dari sistem legal. Pastikan memeriksa dokumen Perizinan <span style="text-transform: uppercase;"> {{ @$data->permit_number }} </span> - <span style="text-transform: capitalize;"> {{ @$data->permit_name }} </span>  pemberitahuan sebagai pengingat pada tanggal {{date('d-m-Y',strtotime(@$data->date_end))}} <br><br><strong><small><span style="font-family: serif;">Periksa informasi pada layanan legal</span></small></strong></p>
+                                            Pemberitahuan untuk pengingat dari sistem legal. Pastikan memeriksa dokumen Perizinan <span style="text-transform: uppercase;"> {{ @$data->permit_number }} </span> - <span style="text-transform: capitalize;"> {{ @$data->permit_name }} </span>  pemberitahuan sebagai pengingat pada tanggal {{date('d-F-Y',strtotime(@$data->date_end))}} <br><br><strong><small><span style="font-family: serif;">Periksa informasi pada layanan legal</span></small></strong></p>
                                         <br>
                                         <a href="#"
                                             style="background:#20e277;text-decoration:none !important; display:inline-block; font-weight:500; margin-top:24px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">SIGN IN</a>
